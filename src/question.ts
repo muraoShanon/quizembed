@@ -1,4 +1,4 @@
-import quizInfo from '../quizInfoJson/quizinfo.json';
+import quizInfo from './quizInfoJson/quizinfo.json';
 import {domQuestion} from './domSettings';
 import {createDiv} from './util';
 

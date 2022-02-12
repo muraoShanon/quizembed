@@ -1,13 +1,10 @@
 import webpack from 'webpack';
 import {resolve} from 'path';
 
-console.log(__dirname);
-console.log(resolve(__dirname, 'index.ts'));
-
 async function build() {
   const entry = resolve(__dirname, 'index.ts');
   const output = {
-    path: resolve(__dirname, '../../pack'),
+    path: resolve(__dirname, '../dist'),
     filename: `quizembed.${new Date().getTime().toString(32)}.js`,
   };
 
@@ -44,5 +41,5 @@ async function build() {
 }
 (async () => {
   await build();
-  console.log('done!!');
+  console.log('ファイルを出力しました');
 })();

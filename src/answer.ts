@@ -1,5 +1,5 @@
-import quizInfo from '../quizInfoJson/quizinfo.json';
-import {domAnswer, domChoice} from './domSettings';
+import quizInfo from './quizInfoJson/quizinfo.json';
+import {domAnswer} from './domSettings';
 import {createDiv} from './util';
 
 function resultDiv(resultText: string): HTMLElement {
