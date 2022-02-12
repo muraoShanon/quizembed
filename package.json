@@ -2,6 +2,9 @@
   "name": "quizembed",
   "version": "0.0.1",
   "description": "クイズ埋め込みJS",
+  "engines": {
+    "node": "16"
+  },
   "main": "build/src/index.js",
   "files": [
     "build"
