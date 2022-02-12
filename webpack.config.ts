@@ -2,7 +2,7 @@ import * as webpack from 'webpack';
 
 const config: webpack.Configuration = {
   mode: 'development',
-  entry: './src/webpack/index.ts',
+  entry: './src/index.ts',
   output: {
     path: `${__dirname}/dist`,
     filename: 'quizembed.js',
