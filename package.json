@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "webpack:w": "webpack -w",
-    "postcss": "postcss ./postcss/quizembed.css -d dist/",
+    "postcss:w": "postcss ./postcss/quizembed.css -d dist/ -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
