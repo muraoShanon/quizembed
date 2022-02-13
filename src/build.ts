@@ -1,45 +1,39 @@
-import webpack from 'webpack';
+import webpackConfig from '../webpack.config';
+import webpack, {Configuration} from 'webpack';
 import {resolve} from 'path';
+import {rejects} from 'assert';
 
-async function build() {
-  const entry = resolve(__dirname, 'index.ts');
-  const output = {
-    path: resolve(__dirname, '../dist'),
-    filename: `quizembed.${new Date().getTime().toString(32)}.js`,
+interface BuildConfig extends Configuration {
+  output: {
+    path: string;
+    filename: string;
   };
+}
 
-  return new Promise(resolve => {
-    webpack(
-      {
-        mode: 'production',
-        entry: entry,
-        output: {
-          path: output.path,
-          filename: output.filename,
-        },
-        module: {
-          rules: [
-            {
-              test: /\.ts$/,
-              use: 'ts-loader',
-            },
-          ],
-        },
-        resolve: {
-          extensions: ['.ts', '.js'],
-        },
-        target: 'browserslist',
-      },
+const buildConfig: BuildConfig = {
+  mode: 'production',
+  entry: resolve(__dirname, 'app.ts'),
+  output: {
+    path: '',
+    filename: `quizembed.${new Date().getTime().toString(32)}.js`,
+  },
+};
 
-      error => {
-        if (error) return resolve(false);
-        console.log('webpack done!');
-        resolve(true);
+function config(webpackConfiguration: BuildConfig): BuildConfig {
+  return Object.assign({}, webpackConfig, webpackConfiguration, buildConfig);
+}
+
+export async function build(outputPath: string) {
+  buildConfig.output.path = outputPath;
+  const conf = config(buildConfig);
+
+  return new Promise((resolve, reject) => {
+    webpack(conf, error => {
+      if (error) {
+        console.error(error);
+        return reject();
       }
-    );
+      return resolve(buildConfig.output.filename);
+    });
   });
 }
-(async () => {
-  await build();
-  console.log('ファイルを出力しました');
-})();
