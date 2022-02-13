@@ -1,7 +1,8 @@
+import {resolve} from 'path';
 import webpackConfig from '../webpack.config';
 import webpack, {Configuration} from 'webpack';
-import {resolve} from 'path';
-import {rejects} from 'assert';
+import {createQuizInfoJson} from './quizInfoJson/createQuizInfoJson';
+import {QuizInfo} from './quizInfoJson/quizinfo.type';
 
 interface BuildConfig extends Configuration {
   output: {
@@ -23,9 +24,12 @@ function config(webpackConfiguration: BuildConfig): BuildConfig {
   return Object.assign({}, webpackConfig, webpackConfiguration, buildConfig);
 }
 
-export async function build(outputPath: string) {
+export async function build(outputPath: string, quizinfo: QuizInfo) {
   buildConfig.output.path = outputPath;
   const conf = config(buildConfig);
+
+  //quizinfojsonの作成
+  createQuizInfoJson(quizinfo);
 
   return new Promise((resolve, reject) => {
     webpack(conf, error => {

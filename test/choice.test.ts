@@ -1,5 +1,5 @@
 import {domChoice} from '../src/domSettings';
-import quizinfo from '../src/quizInfoJson/quizinfo.json';
+import quizinfo from '../quizInfoJsons/quizinfo.json';
 import {choices, check, selectAction, selectAfterAction} from '../src/choice';
 
 describe('choice', () => {
