@@ -1,6 +1,6 @@
 import {promises as fs} from 'fs';
 import {resolve} from 'path';
-import {createQuizInfoJson} from './createQuizInfoJson';
+import {createQuizInfoJson} from '../../src/quizInfoJson/createQuizInfoJson';
 
 async function exists(filepath: string) {
   try {
@@ -11,7 +11,11 @@ async function exists(filepath: string) {
 }
 
 test('jsonファイルの生成', async () => {
-  const jsonpath = resolve(__dirname, 'quizinfo.json');
+  const jsonpath = resolve(
+    __dirname,
+    '../../src/quizInfoJson/',
+    'quizinfo.json'
+  );
   // ファイルの削除
   if (await exists(jsonpath)) {
     await fs.unlink(jsonpath);
