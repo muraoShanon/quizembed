@@ -1,5 +1,6 @@
 export const domApp = {
   id: 'quizembed-app',
+  className: 'quizembed-app',
 };
 
 export const domQuestion = {
