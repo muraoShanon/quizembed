@@ -1,5 +1,4 @@
 import {resolve} from 'path';
-import webpackConfig from '../webpack.config';
 import webpack, {Configuration, DefinePlugin} from 'webpack';
 import {QuizInfo} from './quizinfo.type';
 
@@ -12,7 +11,10 @@ interface BuildConfig extends Configuration {
 
 const buildConfig: BuildConfig = {
   mode: 'production',
-  entry: resolve(__dirname, 'app.ts'),
+  entry: resolve(__dirname, 'app.js'),
+  resolve: {
+    extensions: ['.js'],
+  },
   output: {
     path: '',
     filename: `quizembed.${new Date().getTime().toString(32)}.js`,
@@ -20,7 +22,7 @@ const buildConfig: BuildConfig = {
 };
 
 function config(webpackConfiguration: BuildConfig): BuildConfig {
-  return Object.assign({}, webpackConfig, webpackConfiguration, buildConfig);
+  return Object.assign({}, webpackConfiguration, buildConfig);
 }
 
 export async function build(outputPath: string, quizinfo: QuizInfo) {
@@ -39,7 +41,6 @@ export async function build(outputPath: string, quizinfo: QuizInfo) {
         console.error(error);
         return reject();
       }
-      console.log(buildConfig.output.filename, 'koredate');
       return resolve(buildConfig.output.filename);
     });
   });
