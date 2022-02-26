@@ -1,4 +1,4 @@
-import quizinfo from '../quizInfoJsons/quizinfo.json';
+import {quizInfo} from './testQuizInfoJson';
 import {domAnswer} from '../src/domSettings';
 import {answer} from '../src/answer';
 
@@ -7,7 +7,7 @@ describe('Answer', () => {
     beforeAll(() => {
       const targetId = 'answer-target';
       document.body.innerHTML = `<div id=${targetId}></div>`;
-      document.getElementById(targetId)?.appendChild(answer(true));
+      document.getElementById(targetId)?.appendChild(answer(true, quizInfo));
     });
 
     afterAll(() => {
@@ -19,7 +19,7 @@ describe('Answer', () => {
         domAnswer.result.id
       )?.textContent;
 
-      expect(resultText).toBe(quizinfo.answer.correct.msg);
+      expect(resultText).toBe(quizInfo.answer.correct.msg);
     });
 
     test('正解タイトル', () => {
@@ -27,7 +27,7 @@ describe('Answer', () => {
         domAnswer.answerTitle.id
       )?.textContent;
 
-      expect(answerText).toBe(quizinfo.answer.answerText);
+      expect(answerText).toBe(quizInfo.answer.answerTitle);
     });
 
     test('正解コメント', () => {
@@ -35,7 +35,7 @@ describe('Answer', () => {
         domAnswer.comment.id
       )?.textContent;
 
-      expect(commentText).toBe(quizinfo.answer.comment);
+      expect(commentText).toBe(quizInfo.answer.comment);
     });
   });
 
@@ -43,7 +43,7 @@ describe('Answer', () => {
     beforeAll(() => {
       const targetId = 'answer-target';
       document.body.innerHTML = `<div id=${targetId}></div>`;
-      document.getElementById(targetId)?.appendChild(answer(false));
+      document.getElementById(targetId)?.appendChild(answer(false, quizInfo));
     });
 
     afterAll(() => {
@@ -55,7 +55,7 @@ describe('Answer', () => {
         domAnswer.result.id
       )?.textContent;
 
-      expect(resultText).toBe(quizinfo.answer.wrong.msg);
+      expect(resultText).toBe(quizInfo.answer.wrong.msg);
     });
 
     test('正解タイトル', () => {
@@ -63,7 +63,7 @@ describe('Answer', () => {
         domAnswer.answerTitle.id
       )?.textContent;
 
-      expect(answerText).toBe(quizinfo.answer.answerText);
+      expect(answerText).toBe(quizInfo.answer.answerTitle);
     });
 
     test('正解コメント', () => {
@@ -71,7 +71,7 @@ describe('Answer', () => {
         domAnswer.comment.id
       )?.textContent;
 
-      expect(commentText).toBe(quizinfo.answer.comment);
+      expect(commentText).toBe(quizInfo.answer.comment);
     });
   });
 });

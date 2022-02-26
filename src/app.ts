@@ -1,3 +1,5 @@
+import quizInfo from '../quizInfoJsons/quizinfo.json';
+import {QuizInfo} from './quizInfoJson/quizinfo.type';
 import {question} from './question';
 import {choices} from './choice';
 import {domApp} from './domSettings';
@@ -8,16 +10,16 @@ function quizeEmbedApp() {
   return qc;
 }
 
-export function quizembed() {
+export function quizembed(quizInfo: QuizInfo) {
   const root = document.getElementById('quizembed');
 
   if (!root) return;
 
   const app = quizeEmbedApp();
-  app.appendChild(question());
-  app.appendChild(choices());
+  app.appendChild(question(quizInfo));
+  app.appendChild(choices(quizInfo));
 
   root.appendChild(app);
 }
 
-quizembed();
+quizembed(quizInfo);

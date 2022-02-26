@@ -1,17 +1,19 @@
-import quizInfo from '../quizInfoJsons/quizinfo.json';
 import {domApp, domAnswer, domChoice} from './domSettings';
 import {createDiv} from './util';
 import {answer} from './answer';
+import {QuizInfo} from './quizInfoJson/quizinfo.type';
 
-function selectChoice(choiceDom: HTMLElement) {
+function selectChoice(choiceDom: HTMLElement, quizInfo: QuizInfo) {
   if (document.getElementById(domAnswer.answerContainer.id)) return;
 
-  const isCorrect = choiceDom.dataset.no ? check(choiceDom.dataset.no) : false;
+  const isCorrect = choiceDom.dataset.no
+    ? check(choiceDom.dataset.no, quizInfo)
+    : false;
 
   selectAction(choiceDom, isCorrect);
-  selectAfterAction(isCorrect);
+  selectAfterAction(isCorrect, quizInfo);
 
-  document.getElementById(domApp.id)?.appendChild(answer(isCorrect));
+  document.getElementById(domApp.id)?.appendChild(answer(isCorrect, quizInfo));
 }
 
 function markSpan(idstring: string): HTMLElement {
@@ -41,7 +43,7 @@ function wrongChoice(selectedChoice: HTMLElement): void {
   insertSpan(selectedChoice, domChoice.batu.id, domChoice.wrong.className);
 }
 
-export function check(selectNo: string): boolean {
+export function check(selectNo: string, quizInfo: QuizInfo): boolean {
   return selectNo === quizInfo.answer.correct.no;
 }
 
@@ -53,7 +55,10 @@ export function selectAction(selectedChoice: HTMLElement, result: boolean) {
   }
 }
 
-export function selectAfterAction(selectedRsult: boolean): void {
+export function selectAfterAction(
+  selectedRsult: boolean,
+  quizInfo: QuizInfo
+): void {
   const choices = document.getElementsByClassName(
     domChoice.choices.className
   ) as HTMLCollectionOf<HTMLElement>;
@@ -68,7 +73,7 @@ export function selectAfterAction(selectedRsult: boolean): void {
   });
 }
 
-export function choices(): HTMLElement {
+export function choices(quizInfo: QuizInfo): HTMLElement {
   const container = createDiv(
     domChoice.choiceContainer.id,
     domChoice.choiceContainer.className
@@ -87,7 +92,7 @@ export function choices(): HTMLElement {
     cdom.appendChild(ctext);
 
     cdom.onclick = function () {
-      selectChoice(cdom);
+      selectChoice(cdom, quizInfo);
     };
     container.appendChild(cdom);
   });

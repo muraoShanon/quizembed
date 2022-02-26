@@ -1,11 +1,11 @@
-import quizInfo from '../quizInfoJsons/quizinfo.json';
+import {quizInfo} from './testQuizInfoJson';
 import {question} from '../src/question';
 import {domQuestion} from '../src/domSettings';
 
 describe('Question', () => {
   beforeAll(() => {
     document.body.innerHTML = `<div id="qtest"></div>`;
-    document.getElementById('qtest')?.appendChild(question());
+    document.getElementById('qtest')?.appendChild(question(quizInfo));
   });
 
   afterAll(() => {

@@ -37,6 +37,7 @@ export async function build(outputPath: string, quizinfo: QuizInfo) {
         console.error(error);
         return reject();
       }
+      console.log(buildConfig.output.filename);
       return resolve(buildConfig.output.filename);
     });
   });

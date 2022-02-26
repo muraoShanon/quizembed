@@ -1,16 +1,17 @@
 import quizInfo from '../quizInfoJsons/quizinfo.json';
 import {domAnswer} from './domSettings';
 import {createDiv} from './util';
+import {QuizInfo} from './quizInfoJson/quizinfo.type';
 
 function resultDiv(resultText: string): HTMLElement {
   return createDiv(domAnswer.result.id, domAnswer.result.className, resultText);
 }
 
-function anwerText(): HTMLElement {
+function anwerTitle(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
     domAnswer.answerTitle.id,
     domAnswer.answerTitle.className,
-    quizInfo.answer.answerText
+    quizInfo.answer.answerTitle
   );
 }
 
@@ -22,7 +23,7 @@ function comment(): HTMLElement {
   );
 }
 
-export function answer(result: boolean): HTMLElement {
+export function answer(result: boolean, quizInfo: QuizInfo): HTMLElement {
   const container = createDiv(
     domAnswer.answerContainer.id,
     domAnswer.answerContainer.className
@@ -38,7 +39,7 @@ export function answer(result: boolean): HTMLElement {
   }
 
   // 正解の表示
-  container.appendChild(anwerText());
+  container.appendChild(anwerTitle(quizInfo));
 
   //解説
   container.appendChild(comment());

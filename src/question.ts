@@ -1,8 +1,8 @@
-import quizInfo from '../quizInfoJsons/quizinfo.json';
 import {domQuestion} from './domSettings';
+import {QuizInfo} from './quizInfoJson/quizinfo.type';
 import {createDiv} from './util';
 
-function header(): HTMLElement {
+function header(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
     domQuestion.header.id,
     domQuestion.header.className,
@@ -10,7 +10,7 @@ function header(): HTMLElement {
   );
 }
 
-function qText(): HTMLElement {
+function qText(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
     domQuestion.qtext.id,
     domQuestion.qtext.className,
@@ -18,9 +18,8 @@ function qText(): HTMLElement {
   );
 }
 
-function qImage(): HTMLElement {
+function qImage(quizInfo: QuizInfo): HTMLElement {
   const qidom = createDiv(domQuestion.qimage.id, domQuestion.qimage.className);
-
   const img = document.createElement('img');
   img.src = quizInfo.question.qimagePath;
 
@@ -29,19 +28,19 @@ function qImage(): HTMLElement {
   return qidom;
 }
 
-export function question() {
+export function question(quizInfo: QuizInfo) {
   const qCol = createDiv(
     domQuestion.questionContainer.id,
     domQuestion.questionContainer.className
   );
   // ヘッダー
-  qCol.appendChild(header());
+  qCol.appendChild(header(quizInfo));
 
   // 設問
-  qCol.appendChild(qText());
+  qCol.appendChild(qText(quizInfo));
 
   // 画像
-  qCol.appendChild(qImage());
+  qCol.appendChild(qImage(quizInfo));
 
   return qCol;
 }

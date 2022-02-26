@@ -1,12 +1,12 @@
+import {quizInfo} from './testQuizInfoJson';
 import {domChoice} from '../src/domSettings';
-import quizinfo from '../quizInfoJsons/quizinfo.json';
 import {choices, check, selectAction, selectAfterAction} from '../src/choice';
 
 describe('choice', () => {
   beforeEach(() => {
     const targetDomId = 'choice-test';
     document.body.innerHTML = `<div id=${targetDomId}></div>`;
-    document.getElementById(targetDomId)?.appendChild(choices());
+    document.getElementById(targetDomId)?.appendChild(choices(quizInfo));
   });
 
   afterEach(() => {
@@ -24,13 +24,13 @@ describe('choice', () => {
     const choicesDom = document.getElementsByClassName(
       domChoice.choices.className
     );
-    expect(choicesDom.length).toBe(quizinfo.choices.length);
+    expect(choicesDom.length).toBe(quizInfo.choices.length);
   });
 
   test('設問文', () => {
     const idPrefix = domChoice.choices.id;
 
-    quizinfo.choices.forEach(choice => {
+    quizInfo.choices.forEach(choice => {
       const text = document.getElementById(
         `${idPrefix}${choice.no}`
       )?.textContent;
@@ -39,7 +39,7 @@ describe('choice', () => {
   });
 
   test('答え合わせ', () => {
-    expect(check(quizinfo.answer.correct.no)).toBeTruthy();
+    expect(check(quizInfo.answer.correct.no, quizInfo)).toBeTruthy();
   });
 
   test('選択肢選択:正解:selectAction', () => {
@@ -75,7 +75,7 @@ describe('choice', () => {
       domChoice.choices.className
     ) as HTMLCollectionOf<HTMLElement>;
 
-    selectAfterAction(true);
+    selectAfterAction(true, quizInfo);
 
     Array.from(choices).forEach(choice => {
       expect(choice.classList.contains(domChoice.after.className)).toBeTruthy();
@@ -86,7 +86,7 @@ describe('choice', () => {
   });
 
   test('選択後の処理:正解は常に表示される:selectAfterAction', () => {
-    selectAfterAction(false);
+    selectAfterAction(false, quizInfo);
     expect(document.getElementById(domChoice.maru.id)).toBeTruthy();
   });
 });

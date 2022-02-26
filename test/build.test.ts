@@ -42,7 +42,6 @@ describe('build', () => {
       ],
     });
     const fileFullPath = `${outputDir}/${quizembedFileName}`;
-
     outputPaths.push(fileFullPath);
 
     try {
