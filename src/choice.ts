@@ -1,7 +1,7 @@
 import {domApp, domAnswer, domChoice} from './domSettings';
 import {createDiv} from './util';
 import {answer} from './answer';
-import {QuizInfo} from './quizInfoJson/quizinfo.type';
+import {QuizInfo} from './quizinfo.type';
 
 function selectChoice(choiceDom: HTMLElement, quizInfo: QuizInfo) {
   if (document.getElementById(domAnswer.answerContainer.id)) return;

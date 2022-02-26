@@ -1,5 +1,5 @@
 import {domQuestion} from './domSettings';
-import {QuizInfo} from './quizInfoJson/quizinfo.type';
+import {QuizInfo} from './quizinfo.type';
 import {createDiv} from './util';
 
 function header(quizInfo: QuizInfo): HTMLElement {

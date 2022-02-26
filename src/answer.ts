@@ -1,7 +1,6 @@
-import quizInfo from '../quizInfoJsons/quizinfo.json';
 import {domAnswer} from './domSettings';
 import {createDiv} from './util';
-import {QuizInfo} from './quizInfoJson/quizinfo.type';
+import {QuizInfo} from './quizinfo.type';
 
 function resultDiv(resultText: string): HTMLElement {
   return createDiv(domAnswer.result.id, domAnswer.result.className, resultText);
@@ -15,7 +14,7 @@ function anwerTitle(quizInfo: QuizInfo): HTMLElement {
   );
 }
 
-function comment(): HTMLElement {
+function comment(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
     domAnswer.comment.id,
     domAnswer.comment.className,
@@ -42,7 +41,7 @@ export function answer(result: boolean, quizInfo: QuizInfo): HTMLElement {
   container.appendChild(anwerTitle(quizInfo));
 
   //解説
-  container.appendChild(comment());
+  container.appendChild(comment(quizInfo));
 
   return container;
 }

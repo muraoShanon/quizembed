@@ -1,8 +1,9 @@
-import quizInfo from '../quizInfoJsons/quizinfo.json';
-import {QuizInfo} from './quizInfoJson/quizinfo.type';
+import {QuizInfo} from './quizinfo.type';
 import {question} from './question';
 import {choices} from './choice';
 import {domApp} from './domSettings';
+
+declare const QUIZINFO: QuizInfo;
 
 function quizeEmbedApp() {
   const qc = document.createElement('div');
@@ -22,4 +23,4 @@ export function quizembed(quizInfo: QuizInfo) {
   root.appendChild(app);
 }
 
-quizembed(quizInfo);
+quizembed(QUIZINFO);

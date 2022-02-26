@@ -12,10 +12,10 @@ async function main() {
         'クイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説です',
     },
     question: {
-      headerText: 'クイズです',
+      headerText: 'クイズです!',
       qtext:
         'なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？',
-      qimagePath: './onigarayaki.jpg',
+      qimagePath: './quizembed.exsample.png',
     },
     choices: [
       {no: '1', text: '選択肢1です'},
@@ -23,6 +23,9 @@ async function main() {
       {no: '3', text: '選択肢3です。'},
     ],
   });
+
+  console.log('outputpath:  ', outputPath);
+
   console.log(`output: ${outputPath}${quizembedFileName}`);
 }
 

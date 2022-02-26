@@ -1,8 +1,7 @@
 import {resolve} from 'path';
 import webpackConfig from '../webpack.config';
-import webpack, {Configuration} from 'webpack';
-import {createQuizInfoJson} from './quizInfoJson/createQuizInfoJson';
-import {QuizInfo} from './quizInfoJson/quizinfo.type';
+import webpack, {Configuration, DefinePlugin} from 'webpack';
+import {QuizInfo} from './quizinfo.type';
 
 interface BuildConfig extends Configuration {
   output: {
@@ -26,10 +25,13 @@ function config(webpackConfiguration: BuildConfig): BuildConfig {
 
 export async function build(outputPath: string, quizinfo: QuizInfo) {
   buildConfig.output.path = outputPath;
-  const conf = config(buildConfig);
+  buildConfig.plugins = [
+    new DefinePlugin({
+      QUIZINFO: JSON.stringify(quizinfo),
+    }),
+  ];
 
-  //quizinfojsonの作成
-  createQuizInfoJson(quizinfo);
+  const conf = config(buildConfig);
 
   return new Promise((resolve, reject) => {
     webpack(conf, error => {
@@ -37,7 +39,7 @@ export async function build(outputPath: string, quizinfo: QuizInfo) {
         console.error(error);
         return reject();
       }
-      console.log(buildConfig.output.filename);
+      console.log(buildConfig.output.filename, 'koredate');
       return resolve(buildConfig.output.filename);
     });
   });
