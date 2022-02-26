@@ -70,7 +70,7 @@ export const domAnswer = {
     id: 'quizembed-answer-result',
     className: 'quizembed-answer-result',
   },
-  answerText: {
+  answerTitle: {
     id: 'quizembed-answer-answertext',
     className: 'quizembed-answer-answertext',
   },
