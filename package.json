@@ -1,18 +1,20 @@
 {
   "name": "quizembed",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "クイズ埋め込みJS",
   "engines": {
     "node": "16"
   },
-  "main": "build/src/index.js",
+  "main": "build/src/build.js",
   "files": [
     "build"
   ],
   "scripts": {
+    "build": "tsc",
     "webpack:w": "webpack -w",
     "postcss:w": "postcss ./postcss/quizembed.css -d dist/ -w",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
