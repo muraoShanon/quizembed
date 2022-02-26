@@ -12,6 +12,7 @@ interface BuildConfig extends Configuration {
 const buildConfig: BuildConfig = {
   mode: 'production',
   entry: resolve(__dirname, 'app.js'),
+  target: ['web', 'es5'],
   resolve: {
     extensions: ['.js'],
   },
