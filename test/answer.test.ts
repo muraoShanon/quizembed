@@ -24,7 +24,7 @@ describe('Answer', () => {
 
     test('正解タイトル', () => {
       const answerText = document.getElementById(
-        domAnswer.answerText.id
+        domAnswer.answerTitle.id
       )?.textContent;
 
       expect(answerText).toBe(quizinfo.answer.answerText);
@@ -60,7 +60,7 @@ describe('Answer', () => {
 
     test('正解タイトル', () => {
       const answerText = document.getElementById(
-        domAnswer.answerText.id
+        domAnswer.answerTitle.id
       )?.textContent;
 
       expect(answerText).toBe(quizinfo.answer.answerText);

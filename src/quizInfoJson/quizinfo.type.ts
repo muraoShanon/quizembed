@@ -12,7 +12,7 @@ export interface QuizInfo {
     wrong: {
       msg: string;
     };
-    answerText: string;
+    answerTitle: string;
     comment: string;
   };
   question: {

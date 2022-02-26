@@ -8,8 +8,8 @@ function resultDiv(resultText: string): HTMLElement {
 
 function anwerText(): HTMLElement {
   return createDiv(
-    domAnswer.answerText.id,
-    domAnswer.answerText.className,
+    domAnswer.answerTitle.id,
+    domAnswer.answerTitle.className,
     quizInfo.answer.answerText
   );
 }
