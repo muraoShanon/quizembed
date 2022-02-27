@@ -14,7 +14,7 @@ describe('/build/build', () => {
   });
 
   test('build', async () => {
-    const {build} = require('../build/src/build');
+    const {build} = require('../build/src/index');
     const outputDir = resolve(__dirname, '../dist/');
     const quizembedFileName = await build(outputDir, {
       answer: {

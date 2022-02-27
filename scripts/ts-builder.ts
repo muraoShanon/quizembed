@@ -1,4 +1,4 @@
-import {build} from '../src/build';
+import {build} from '../build/src/index';
 import {resolve} from 'path';
 
 async function main() {
@@ -23,8 +23,6 @@ async function main() {
       {no: '3', text: '選択肢3です。'},
     ],
   });
-
-  console.log('outputpath:  ', outputPath);
 
   console.log(`output: ${outputPath}${quizembedFileName}`);
 }

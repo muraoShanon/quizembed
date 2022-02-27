@@ -1,4 +1,4 @@
-const {build} = require('../build/src/build');
+const {build} = require('../build/src/index');
 const {resolve} = require('path');
 
 async function main() {

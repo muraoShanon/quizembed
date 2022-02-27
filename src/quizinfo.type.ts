@@ -4,6 +4,12 @@ interface Choice {
 }
 
 export interface QuizInfo {
+  question: {
+    headerText: string;
+    qtext: string;
+    qimagePath: string;
+  };
+  choices: Choice[];
   answer: {
     correct: {
       no: string;
@@ -15,10 +21,4 @@ export interface QuizInfo {
     answerTitle: string;
     comment: string;
   };
-  question: {
-    headerText: string;
-    qtext: string;
-    qimagePath: string;
-  };
-  choices: Choice[];
 }
