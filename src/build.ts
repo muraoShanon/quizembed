@@ -26,7 +26,10 @@ function config(webpackConfiguration: BuildConfig): BuildConfig {
   return Object.assign({}, webpackConfiguration, buildConfig);
 }
 
-export async function build(outputPath: string, quizinfo: QuizInfo) {
+export async function build(
+  outputPath: string,
+  quizinfo: QuizInfo
+): Promise<string> {
   buildConfig.output.path = outputPath;
   buildConfig.plugins = [
     new DefinePlugin({
@@ -40,7 +43,7 @@ export async function build(outputPath: string, quizinfo: QuizInfo) {
     webpack(conf, error => {
       if (error) {
         console.error(error);
-        return reject();
+        return reject('error');
       }
       return resolve(buildConfig.output.filename);
     });
