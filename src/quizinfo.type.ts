@@ -5,9 +5,9 @@ interface Choice {
 
 export interface QuizInfo {
   question: {
-    headerText: string;
-    qtext: string;
-    qimagePath: string;
+    title: string;
+    comment: string;
+    imagePath: string;
   };
   choices: Choice[];
   answer: {
@@ -18,7 +18,7 @@ export interface QuizInfo {
     wrong: {
       msg: string;
     };
-    answerTitle: string;
+    title: string;
     comment: string;
   };
 }

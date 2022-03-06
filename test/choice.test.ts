@@ -15,7 +15,7 @@ describe('choice', () => {
 
   test('choice:ContaierDom生成', () => {
     const choicesContaierDom = document.getElementById(
-      domChoice.choiceContainer.id
+      domChoice.choicesContainer.id
     );
     expect(choicesContaierDom).toBeTruthy();
   });

@@ -8,57 +8,57 @@ export const domQuestion = {
     id: 'quizembed-question-questioncontainer',
     className: 'quizembed-question-questioncontainer',
   },
-  header: {
-    id: 'quizembed-question-header',
-    className: 'quizembed-question-header',
+  title: {
+    id: 'quizembed-question-title',
+    className: 'quizembed-question-title',
   },
-  qtext: {
-    id: 'quizembed-question-qtext',
-    className: "'quizembed-question-qtext'",
+  comment: {
+    id: 'quizembed-question-comment',
+    className: "'quizembed-question-comment'",
   },
-  qimage: {
-    id: 'quizembed-question-qimage',
-    className: "'quizembed-question-qimage'",
+  image: {
+    id: 'quizembed-question-image',
+    className: "'quizembed-question-image'",
   },
 };
 
 export const domChoice = {
-  choiceContainer: {
-    id: 'quizembed-choice-choicecontainer',
-    className: "'quizembed-choice-choicecontainer'",
+  choicesContainer: {
+    id: 'quizembed-choices-choicecontainer',
+    className: "'quizembed-choices-choicecontainer'",
   },
 
   choices: {
-    id: 'quizembed-choice-choices',
-    className: 'quizembed-choice-choices',
+    id: 'quizembed-choices-choices',
+    className: 'quizembed-choices-choices',
   },
 
   after: {
-    className: 'after-quizembed-choice-choices',
+    className: 'after-quizembed-choices-choices',
   },
 
   before: {
-    className: 'before-quizembed-choice-choices',
+    className: 'before-quizembed-choices-choices',
   },
 
   correct: {
-    className: 'quizembed-choice-correct',
+    className: 'quizembed-choices-correct',
   },
 
   wrong: {
-    className: 'quizembed-choice-wrong',
+    className: 'quizembed-choices-wrong',
   },
 
   text: {
-    className: 'quizembed-choice-choices-text',
+    className: 'quizembed-choices-choices-text',
   },
 
   maru: {
-    id: 'quizembed-choice-maru',
+    id: 'quizembed-choices-maru',
   },
 
   batu: {
-    id: 'quizembed-choice-batu',
+    id: 'quizembed-choices-batu',
   },
 };
 
@@ -67,13 +67,13 @@ export const domAnswer = {
     id: 'quizembed-answer-answercontainer',
     className: 'quizembed-answer-answercontainer',
   },
-  result: {
-    id: 'quizembed-answer-result',
-    className: 'quizembed-answer-result',
+  resultMsg: {
+    id: 'quizembed-answer-result-msg',
+    className: 'quizembed-answer-result-msg',
   },
-  answerTitle: {
-    id: 'quizembed-answer-answertext',
-    className: 'quizembed-answer-answertext',
+  title: {
+    id: 'quizembed-answer-title',
+    className: 'quizembed-answer-title',
   },
   comment: {
     id: 'quizembed-answer-comment',

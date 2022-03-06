@@ -75,8 +75,8 @@ export function selectAfterAction(
 
 export function choices(quizInfo: QuizInfo): HTMLElement {
   const container = createDiv(
-    domChoice.choiceContainer.id,
-    domChoice.choiceContainer.className
+    domChoice.choicesContainer.id,
+    domChoice.choicesContainer.className
   );
 
   quizInfo.choices.forEach(choice => {

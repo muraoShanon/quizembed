@@ -3,14 +3,18 @@ import {createDiv} from './util';
 import {QuizInfo} from './quizinfo.type';
 
 function resultDiv(resultText: string): HTMLElement {
-  return createDiv(domAnswer.result.id, domAnswer.result.className, resultText);
+  return createDiv(
+    domAnswer.resultMsg.id,
+    domAnswer.resultMsg.className,
+    resultText
+  );
 }
 
 function anwerTitle(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
-    domAnswer.answerTitle.id,
-    domAnswer.answerTitle.className,
-    quizInfo.answer.answerTitle
+    domAnswer.title.id,
+    domAnswer.title.className,
+    quizInfo.answer.title
   );
 }
 

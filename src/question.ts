@@ -4,24 +4,24 @@ import {createDiv} from './util';
 
 function header(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
-    domQuestion.header.id,
-    domQuestion.header.className,
-    quizInfo.question.headerText
+    domQuestion.title.id,
+    domQuestion.title.className,
+    quizInfo.question.title
   );
 }
 
 function qText(quizInfo: QuizInfo): HTMLElement {
   return createDiv(
-    domQuestion.qtext.id,
-    domQuestion.qtext.className,
-    quizInfo.question.qtext
+    domQuestion.comment.id,
+    domQuestion.comment.className,
+    quizInfo.question.comment
   );
 }
 
 function qImage(quizInfo: QuizInfo): HTMLElement {
-  const qidom = createDiv(domQuestion.qimage.id, domQuestion.qimage.className);
+  const qidom = createDiv(domQuestion.image.id, domQuestion.image.className);
   const img = document.createElement('img');
-  img.src = quizInfo.question.qimagePath;
+  img.src = quizInfo.question.imagePath;
 
   qidom.appendChild(img);
 

@@ -18,28 +18,28 @@ describe('Question', () => {
     );
     expect(questionContainer).toBeTruthy();
 
-    const header = document.getElementById(domQuestion.header.id);
+    const header = document.getElementById(domQuestion.title.id);
     expect(header).toBeTruthy();
 
-    const qtext = document.getElementById(domQuestion.qtext.id);
+    const qtext = document.getElementById(domQuestion.comment.id);
     expect(qtext).toBeTruthy();
 
-    const qimage = document.getElementById(domQuestion.qimage.id);
+    const qimage = document.getElementById(domQuestion.image.id);
     expect(qimage).toBeTruthy();
   });
 
   test('ヘッダテキスト', () => {
-    const header = document.getElementById(domQuestion.header.id);
-    expect(header?.textContent).toBe(quizInfo.question.headerText);
+    const header = document.getElementById(domQuestion.title.id);
+    expect(header?.textContent).toBe(quizInfo.question.title);
   });
 
   test('設問テキスト', () => {
-    const qtext = document.getElementById(domQuestion.qtext.id);
-    expect(qtext?.textContent).toBe(quizInfo.question.qtext);
+    const qtext = document.getElementById(domQuestion.comment.id);
+    expect(qtext?.textContent).toBe(quizInfo.question.comment);
   });
 
   test('画像', () => {
-    const qimage = document.getElementById(domQuestion.qimage.id);
+    const qimage = document.getElementById(domQuestion.image.id);
     expect(qimage).toBeTruthy();
   });
 });

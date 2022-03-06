@@ -16,7 +16,7 @@ describe('Answer', () => {
 
     test('結果のテキスト', () => {
       const resultText = document.getElementById(
-        domAnswer.result.id
+        domAnswer.resultMsg.id
       )?.textContent;
 
       expect(resultText).toBe(quizInfo.answer.correct.msg);
@@ -24,10 +24,10 @@ describe('Answer', () => {
 
     test('正解タイトル', () => {
       const answerText = document.getElementById(
-        domAnswer.answerTitle.id
+        domAnswer.title.id
       )?.textContent;
 
-      expect(answerText).toBe(quizInfo.answer.answerTitle);
+      expect(answerText).toBe(quizInfo.answer.title);
     });
 
     test('正解コメント', () => {
@@ -52,7 +52,7 @@ describe('Answer', () => {
 
     test('結果のテキスト', () => {
       const resultText = document.getElementById(
-        domAnswer.result.id
+        domAnswer.resultMsg.id
       )?.textContent;
 
       expect(resultText).toBe(quizInfo.answer.wrong.msg);
@@ -60,10 +60,10 @@ describe('Answer', () => {
 
     test('正解タイトル', () => {
       const answerText = document.getElementById(
-        domAnswer.answerTitle.id
+        domAnswer.title.id
       )?.textContent;
 
-      expect(answerText).toBe(quizInfo.answer.answerTitle);
+      expect(answerText).toBe(quizInfo.answer.title);
     });
 
     test('正解コメント', () => {

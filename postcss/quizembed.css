@@ -6,21 +6,21 @@
   border: 1px solid #999;
   background-color: #efefef;
 
-  & #quizembed-question-header {
+  & #quizembed-question-title {
     font-size: 1.5rem;
     color: #004ea1;
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
-  & #quizembed-question-qtext {
+  & #quizembed-question-comment {
     font-size: 1.1rem;
     line-height: 1.4;
     padding: 0 0.3rem;
     margin-bottom: 0.25rem;
   }
 
-  & #quizembed-question-qimage img {
+  & #quizembed-question-image img {
     max-width: 100%;
     margin: 0.5rem auto;
     border-radius: 0.25rem;
@@ -32,20 +32,20 @@
     border-top: 2px solid #999;
   }
 
-  & #quizembed-answer-result {
+  & #quizembed-answer-result-msg {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
   }
 
-  & #quizembed-answer-answertext {
+  & #quizembed-answer-title {
     font-size: 2rem;
     font-weight: 600;
     color: #eb6202;
     margin-bottom: 0.5rem;
   }
 
-  & .quizembed-choice-choices {
+  & .quizembed-choices-choices {
     position: relative;
     text-align: center;
     background-color: #fff;
@@ -55,23 +55,23 @@
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   }
 
-  & .before-quizembed-choice-choices:hover {
+  & .before-quizembed-choices-choices:hover {
     cursor: pointer;
     background-color: #eb6202;
     color: #fff;
   }
 
-  & .quizembed-choice-correct {
+  & .quizembed-choices-correct {
     background-color: #d0f1de;
     font-size: 1.5rem;
     font-weight: 600;
   }
 
-  & .quizembed-choice-wrong {
+  & .quizembed-choices-wrong {
     background-color: #f8c9ca;
   }
 
-  & #quizembed-choice-maru {
+  & #quizembed-choices-maru {
     position: absolute;
     left: 2rem;
     width: 2rem;
@@ -81,7 +81,7 @@
     border: solid 3px #004ea1;
   }
 
-  & #quizembed-choice-batu {
+  & #quizembed-choices-batu {
     display: block;
     position: absolute;
     left: 2.5rem;
