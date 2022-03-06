@@ -18,7 +18,7 @@ const buildConfig: BuildConfig = {
   },
   output: {
     path: '',
-    filename: `quizembed.${new Date().getTime().toString(32)}.js`,
+    filename: `quizembed.js`,
   },
 };
 
