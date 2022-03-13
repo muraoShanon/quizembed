@@ -1,10 +1,10 @@
 /*
  * @jest-environment node
  */
-const {resolve} = require('path');
 const fs = require('fs').promises;
+const fsync = require('fs');
 
-describe('/build/build', () => {
+describe('buildテスト', () => {
   const outputPaths = [];
 
   afterEach(() => {
@@ -14,9 +14,8 @@ describe('/build/build', () => {
   });
 
   test('build', async () => {
-    const {build} = require('../build/src/index');
-    const outputDir = resolve(__dirname, '../dist/');
-    const quizembedFileName = await build(outputDir, {
+    const {build} = require('../lib/index');
+    const quizembedFileName = await build(__dirname, {
       answer: {
         correct: {
           no: '1',
@@ -41,7 +40,9 @@ describe('/build/build', () => {
         {no: '3', text: '選択肢3です。'},
       ],
     });
-    const fileFullPath = `${outputDir}/${quizembedFileName}`;
+    const fileFullPath = `${__dirname}/${quizembedFileName}`;
     outputPaths.push(fileFullPath);
+
+    expect(fsync.existsSync(fileFullPath)).toBeTruthy();
   });
 }, 2500);

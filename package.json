@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "build:noEmit": "tsc -noEmit",
-    "postcss": "postcss ./postcss/quizembed.css -d dist/",
-    "postcss:w": "postcss ./postcss/quizembed.css -d dist/ -w",
+    "postcss": "postcss ./postcss/quizembed.css -d css/",
+    "postcss:w": "postcss ./postcss/quizembed.css -d css/ -w",
     "test": "jest",
     "rollup": "rollup -c",
     "prepublishOnly": "npm run build"
@@ -40,7 +40,6 @@
     "jest": "^27.5.1",
     "postcss-cli": "^9.1.0",
     "postcss-preset-env": "^7.3.1",
-    "ts-jest": "^27.1.3",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   }

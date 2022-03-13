@@ -1,5 +1,8 @@
 build/
 quizInfoJsons/
+lib/
+example/quizembed.js
+
 
 # Logs
 logs
