@@ -1,4 +1,4 @@
-const {build} = require('../lib/index');
+import {build} from '../lib/index';
 
 const quizInfo = {
   answer: {
@@ -23,9 +23,7 @@ const quizInfo = {
 
 async function main() {
   await build({
-    output: {
-      path: __dirname,
-    },
+    output: {path: __dirname, filename: 'tsquizembed.js'},
     quizinfo: quizInfo,
   });
 }
