@@ -10,11 +10,11 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc",
-    "build:w": "tsc -w",
+    "build:noEmit": "tsc -noEmit",
     "postcss": "postcss ./postcss/quizembed.css -d dist/",
     "postcss:w": "postcss ./postcss/quizembed.css -d dist/ -w",
     "test": "jest",
+    "rollup": "rollup -c",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -28,9 +28,12 @@
   },
   "homepage": "https://github.com/muraoShanon/quizembed#readme",
   "dependencies": {
+    "rollup": "^2.70.0",
     "webpack": "^5.68.0"
   },
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.1",
+    "@swc/jest": "^0.2.20",
     "@types/jest": "^27.4.0",
     "@types/node": "^16.11.24",
     "gts": "^3.1.0",
