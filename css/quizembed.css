@@ -1,0 +1,99 @@
+#quizembed {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  border: 1px solid #999;
+  background-color: #efefef
+}
+#quizembed #quizembed-question-title {
+    font-size: 1.5rem;
+    color: #004ea1;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+#quizembed #quizembed-question-comment {
+    white-space: break-spaces;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    padding: 0 0.3rem;
+    margin-bottom: 0.25rem;
+  }
+#quizembed #quizembed-question-image img {
+    max-width: 100%;
+    margin: 0.5rem auto;
+    border-radius: 0.25rem;
+  }
+#quizembed #quizembed-answer-answercontainer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid #999;
+  }
+#quizembed #quizembed-answer-result-msg {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+#quizembed #quizembed-answer-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #eb6202;
+    margin-bottom: 0.5rem;
+  }
+#quizembed .quizembed-choices-choices {
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 0.7rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+#quizembed .before-quizembed-choices-choices:hover {
+    cursor: pointer;
+    background-color: #eb6202;
+    color: #fff;
+  }
+#quizembed .quizembed-choices-correct {
+    background-color: #d0f1de;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+#quizembed .quizembed-choices-wrong {
+    background-color: #f8c9ca;
+  }
+#quizembed #quizembed-choices-maru {
+    position: absolute;
+    left: 2rem;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    border: solid 3px #004ea1;
+  }
+#quizembed #quizembed-choices-batu {
+    display: block;
+    position: absolute;
+    left: 2.5rem;
+    width: 1.5rem;
+    height: 1.5rem
+  }
+#quizembed #quizembed-choices-batu::before,
+    #quizembed #quizembed-choices-batu::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0.2rem;
+      height: 1.5rem;
+      background: #333;
+    }
+#quizembed #quizembed-choices-batu::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+#quizembed #quizembed-choices-batu::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+#quizembed .quizembed-answer-comment {
+    white-space: break-spaces;
+  }
