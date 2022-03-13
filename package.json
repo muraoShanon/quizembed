@@ -15,7 +15,9 @@
     "postcss:w": "postcss ./postcss/quizembed.css -d css/ -w",
     "test": "jest",
     "rollup": "rollup -c",
-    "prepublishOnly": "npm run rollup"
+    "prepublishOnly": "npm run rollup",
+    "buildExample:js": " node ./example/jsbuilder.js",
+    "buildExample:ts": "npx ts-node ./example/tsbuilder.ts"
   },
   "repository": {
     "type": "git",
