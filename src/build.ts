@@ -6,6 +6,7 @@ interface BuildConfig extends Configuration {
   output: {
     path: string;
     filename: string;
+    library: string;
   };
 }
 
@@ -19,6 +20,7 @@ const buildConfig: BuildConfig = {
   output: {
     path: '',
     filename: `quizembed.js`,
+    library: 'quizembed',
   },
 };
 

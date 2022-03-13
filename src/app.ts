@@ -6,7 +6,7 @@ import {createDiv} from './util';
 
 declare const QUIZINFO: QuizInfo;
 
-function embed(quizInfo: QuizInfo) {
+function _embed(quizInfo: QuizInfo) {
   const root = document.getElementById('quizembed');
 
   if (!root) return;
@@ -18,10 +18,10 @@ function embed(quizInfo: QuizInfo) {
   root.appendChild(app);
 }
 
-export function quizembed(quizInfo?: QuizInfo) {
+export function embed(quizInfo?: QuizInfo) {
   if (quizInfo) {
-    embed(quizInfo);
+    _embed(quizInfo);
   } else if (QUIZINFO) {
-    embed(QUIZINFO);
+    _embed(QUIZINFO);
   }
 }
