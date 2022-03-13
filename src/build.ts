@@ -9,7 +9,7 @@ interface BuildArg {
 
 const defaultConfig: Configuration = {
   mode: 'production',
-  entry: resolve(__dirname, 'app.js'),
+  entry: resolve(__dirname, 'buildapp.js'),
   target: ['web', 'es5'],
   resolve: {
     extensions: ['.js'],
