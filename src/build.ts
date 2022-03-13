@@ -2,52 +2,47 @@ import {resolve} from 'path';
 import webpack, {Configuration, DefinePlugin} from 'webpack';
 import {QuizInfo} from './quizinfo.type';
 
-interface BuildConfig extends Configuration {
-  output: {
-    path: string;
-    filename: string;
-    library: string;
-  };
+interface BuildArg {
+  output: {path: string; filename?: string};
+  quizinfo: QuizInfo;
 }
 
-const buildConfig: BuildConfig = {
+const defaultConfig: Configuration = {
   mode: 'production',
   entry: resolve(__dirname, 'app.js'),
   target: ['web', 'es5'],
   resolve: {
     extensions: ['.js'],
   },
-  output: {
-    path: '',
-    filename: `quizembed.js`,
-    library: 'quizembed',
-  },
 };
 
-function config(webpackConfiguration: BuildConfig): BuildConfig {
-  return Object.assign({}, webpackConfiguration, buildConfig);
+function config(argConf: Configuration): Configuration {
+  return Object.assign({}, defaultConfig, argConf);
 }
 
-export async function build(
-  outputPath: string,
-  quizinfo: QuizInfo
-): Promise<string> {
-  buildConfig.output.path = outputPath;
-  buildConfig.plugins = [
-    new DefinePlugin({
-      QUIZINFO: JSON.stringify(quizinfo),
-    }),
-  ];
+export async function build(buildArg: BuildArg): Promise<boolean> {
+  const {output, quizinfo} = buildArg;
 
-  const conf = config(buildConfig);
+  const conf: Configuration = {
+    output: {
+      path: output.path,
+      filename: output.filename ? output.filename : 'quizembed.js',
+      library: `quizembed`,
+    },
+    plugins: [
+      new DefinePlugin({
+        QUIZINFO: JSON.stringify(quizinfo),
+      }),
+    ],
+  };
 
   return new Promise((resolve, reject) => {
-    webpack(conf, error => {
+    webpack(config(conf), error => {
       if (error) {
         console.error(error);
-        return reject('error');
+        return reject(false);
       }
-      return resolve(buildConfig.output.filename);
+      return resolve(true);
     });
   });
 }

@@ -1,5 +1,4 @@
 const {build} = require('../lib/index');
-const {resolve} = require('path');
 
 const quizInfo = {
   answer: {
@@ -23,12 +22,12 @@ const quizInfo = {
 };
 
 async function main() {
-  const outputPath = resolve(__dirname, '../example');
-  const quizembedFileName = await build(outputPath, quizInfo);
-
-  console.log('outputpath:  ', outputPath);
-
-  console.log(`output: ${outputPath}${quizembedFileName}`);
+  const quizembedFileName = await build({
+    output: {
+      path: __dirname,
+    },
+    quizinfo: quizInfo,
+  });
 }
 
 (async () => {

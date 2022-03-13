@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
 
 export default [
   //Common Parts
@@ -26,5 +27,14 @@ export default [
       format: 'cjs',
     },
     plugins: [typescript({rootDir: './src', outDir: 'lib'})],
+  },
+  //dtx
+  {
+    input: 'src/index.ts',
+    output: {
+      file: 'lib/index.d.ts',
+      format: 'es',
+    },
+    plugins: [dts()],
   },
 ];
