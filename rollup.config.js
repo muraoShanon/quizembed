@@ -12,6 +12,14 @@ export default [
     plugins: [typescript({rootDir: './src', outDir: 'lib', module: 'esnext'})],
   },
   {
+    input: 'src/buildapp.ts',
+    output: {
+      file: 'lib/buildapp.js',
+      format: 'cjs',
+    },
+    plugins: [typescript({rootDir: './src', outDir: 'lib', module: 'esnext'})],
+  },
+  {
     input: 'src/build.ts',
     output: {
       file: 'lib/build.js',
@@ -19,6 +27,7 @@ export default [
     },
     plugins: [typescript({rootDir: './src', outDir: 'lib', module: 'esnext'})],
   },
+
   //CJS
   {
     input: 'src/index.ts',
@@ -28,7 +37,18 @@ export default [
     },
     plugins: [typescript({rootDir: './src', outDir: 'lib'})],
   },
-  //dtx
+  //iife
+  {
+    input: 'src/app.ts',
+    output: {
+      file: 'lib/quizembed.js',
+      format: 'iife',
+      name: 'quizembed',
+    },
+    extend: true,
+    plugins: [typescript({rootDir: './src', outDir: 'lib', module: 'esnext'})],
+  },
+  //dts
   {
     input: 'src/index.ts',
     output: {

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/quizembed.css" />
+  </head>
+  <body>
+    <div style="width: 700px; margin: 0 auto">
+      <div id="quizembed"></div>
+    </div>
+    <script src="../lib/quizembed.js"></script>
+    <script>
+      quizembed.embed({
+        answer: {
+          correct: {no: '1', msg: '正解です'},
+          wrong: {msg: '不正解です'},
+          title: '正解は:1番です',
+          comment:
+            'クイズの解説です\nクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説ですクイズの解説です',
+        },
+        question: {
+          title: 'クイズです',
+          comment:
+            'なんでしょうか？\nなんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？',
+          imagePath: './quizembed.exsample.png',
+        },
+        choices: [
+          {no: '1', text: '選択肢1です'},
+          {no: '2', text: '選択肢2です。'},
+          {no: '3', text: '選択肢3です。'},
+        ],
+      });
+    </script>
+  </body>
+</html>
