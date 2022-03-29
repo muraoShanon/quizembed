@@ -1,25 +1,27 @@
-import {domQuestion} from './domSettings';
-import {QuizInfo} from './quizinfo.type';
+import {DomSettings, QuizInfo} from './types';
 import {createDiv} from './util';
 
-function header(quizInfo: QuizInfo): HTMLElement {
+function header(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domQuestion.title.id,
-    domQuestion.title.className,
+    domSettings.domQuestion.title.id,
+    domSettings.domQuestion.title.className,
     quizInfo.question.title
   );
 }
 
-function qText(quizInfo: QuizInfo): HTMLElement {
+function qText(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domQuestion.comment.id,
-    domQuestion.comment.className,
+    domSettings.domQuestion.comment.id,
+    domSettings.domQuestion.comment.className,
     quizInfo.question.comment
   );
 }
 
-function qImage(quizInfo: QuizInfo): HTMLElement {
-  const qidom = createDiv(domQuestion.image.id, domQuestion.image.className);
+function qImage(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
+  const qidom = createDiv(
+    domSettings.domQuestion.image.id,
+    domSettings.domQuestion.image.className
+  );
   const img = document.createElement('img');
   img.src = quizInfo.question.imagePath;
 
@@ -28,19 +30,19 @@ function qImage(quizInfo: QuizInfo): HTMLElement {
   return qidom;
 }
 
-export function question(quizInfo: QuizInfo) {
+export function question(quizInfo: QuizInfo, domSettings: DomSettings) {
   const qCol = createDiv(
-    domQuestion.questionContainer.id,
-    domQuestion.questionContainer.className
+    domSettings.domQuestion.questionContainer.id,
+    domSettings.domQuestion.questionContainer.className
   );
   // ヘッダー
-  qCol.appendChild(header(quizInfo));
+  qCol.appendChild(header(quizInfo, domSettings));
 
   // 設問
-  qCol.appendChild(qText(quizInfo));
+  qCol.appendChild(qText(quizInfo, domSettings));
 
   // 画像
-  qCol.appendChild(qImage(quizInfo));
+  qCol.appendChild(qImage(quizInfo, domSettings));
 
   return qCol;
 }

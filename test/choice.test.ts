@@ -1,12 +1,14 @@
 import {quizInfo} from './testQuizInfoJson';
-import {domChoice} from '../src/domSettings';
+import {domSettings} from '../src/domSettings';
 import {choices, check, selectAction, selectAfterAction} from '../src/choice';
 
 describe('choice', () => {
   beforeEach(() => {
     const targetDomId = 'choice-test';
     document.body.innerHTML = `<div id=${targetDomId}></div>`;
-    document.getElementById(targetDomId)?.appendChild(choices(quizInfo));
+    document
+      .getElementById(targetDomId)
+      ?.appendChild(choices(quizInfo, domSettings));
   });
 
   afterEach(() => {
@@ -15,20 +17,20 @@ describe('choice', () => {
 
   test('choice:ContaierDom生成', () => {
     const choicesContaierDom = document.getElementById(
-      domChoice.choicesContainer.id
+      domSettings.domChoice.choicesContainer.id
     );
     expect(choicesContaierDom).toBeTruthy();
   });
 
   test('設問の生成', () => {
     const choicesDom = document.getElementsByClassName(
-      domChoice.choices.className
+      domSettings.domChoice.choices.className
     );
     expect(choicesDom.length).toBe(quizInfo.choices.length);
   });
 
   test('設問文', () => {
-    const idPrefix = domChoice.choices.id;
+    const idPrefix = domSettings.domChoice.choices.id;
 
     quizInfo.choices.forEach(choice => {
       const text = document.getElementById(
@@ -44,49 +46,55 @@ describe('choice', () => {
 
   test('選択肢選択:正解:selectAction', () => {
     const choices = document.getElementsByClassName(
-      domChoice.choices.className
+      domSettings.domChoice.choices.className
     ) as HTMLCollectionOf<HTMLElement>;
 
-    selectAction(choices[0], true);
+    selectAction(choices[0], true, domSettings);
 
     // 丸オブジェクトの生成
-    expect(document.getElementById(domChoice.maru.id)).toBeTruthy();
+    expect(document.getElementById(domSettings.domChoice.maru.id)).toBeTruthy();
 
     // correctクラスの追加
-    expect(choices[0].classList).toContain(domChoice.correct.className);
+    expect(choices[0].classList).toContain(
+      domSettings.domChoice.correct.className
+    );
   });
 
   test('選択肢選択:不正解:selectAction', () => {
     const choices = document.getElementsByClassName(
-      domChoice.choices.className
+      domSettings.domChoice.choices.className
     ) as HTMLCollectionOf<HTMLElement>;
 
-    selectAction(choices[0], false);
+    selectAction(choices[0], false, domSettings);
 
     // バツオブジェクトの生成
-    expect(document.getElementById(domChoice.batu.id)).toBeTruthy();
+    expect(document.getElementById(domSettings.domChoice.batu.id)).toBeTruthy();
 
     // wrongクラスの追加
-    expect(choices[0].classList).toContain(domChoice.wrong.className);
+    expect(choices[0].classList).toContain(
+      domSettings.domChoice.wrong.className
+    );
   });
 
   test('選択後の処理:selectAfterAction', () => {
     const choices = document.getElementsByClassName(
-      domChoice.choices.className
+      domSettings.domChoice.choices.className
     ) as HTMLCollectionOf<HTMLElement>;
 
-    selectAfterAction(true, quizInfo);
+    selectAfterAction(true, quizInfo, domSettings);
 
     Array.from(choices).forEach(choice => {
-      expect(choice.classList.contains(domChoice.after.className)).toBeTruthy();
       expect(
-        choice.classList.contains(domChoice.before.className)
+        choice.classList.contains(domSettings.domChoice.after.className)
+      ).toBeTruthy();
+      expect(
+        choice.classList.contains(domSettings.domChoice.before.className)
       ).not.toBeTruthy();
     });
   });
 
   test('選択後の処理:正解は常に表示される:selectAfterAction', () => {
-    selectAfterAction(false, quizInfo);
-    expect(document.getElementById(domChoice.maru.id)).toBeTruthy();
+    selectAfterAction(false, quizInfo, domSettings);
+    expect(document.getElementById(domSettings.domChoice.maru.id)).toBeTruthy();
   });
 });

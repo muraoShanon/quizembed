@@ -1,9 +1,11 @@
-export const domApp = {
+import {DomSettings} from './types';
+
+const domApp = {
   id: 'quizembed-app',
   className: 'quizembed-app',
 };
 
-export const domQuestion = {
+const domQuestion = {
   questionContainer: {
     id: 'quizembed-question-questioncontainer',
     className: 'quizembed-question-questioncontainer',
@@ -22,7 +24,7 @@ export const domQuestion = {
   },
 };
 
-export const domChoice = {
+const domChoice = {
   choicesContainer: {
     id: 'quizembed-choices-choicecontainer',
     className: "'quizembed-choices-choicecontainer'",
@@ -62,7 +64,7 @@ export const domChoice = {
   },
 };
 
-export const domAnswer = {
+const domAnswer = {
   answerContainer: {
     id: 'quizembed-answer-answercontainer',
     className: 'quizembed-answer-answercontainer',
@@ -79,4 +81,11 @@ export const domAnswer = {
     id: 'quizembed-answer-comment',
     className: 'quizembed-answer-comment',
   },
+};
+
+export const domSettings: DomSettings = {
+  domApp,
+  domAnswer,
+  domQuestion,
+  domChoice,
 };

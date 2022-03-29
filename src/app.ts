@@ -1,7 +1,7 @@
-import {QuizInfo} from './quizinfo.type';
+import {QuizInfo} from './types';
 import {question} from './question';
 import {choices} from './choice';
-import {domApp} from './domSettings';
+import {domSettings} from './domSettings';
 import {createDiv} from './util';
 
 export function embed(quizInfo: QuizInfo) {
@@ -9,9 +9,9 @@ export function embed(quizInfo: QuizInfo) {
 
   if (!root) return;
 
-  const app = createDiv(domApp.id, domApp.className);
-  app.appendChild(question(quizInfo));
-  app.appendChild(choices(quizInfo));
+  const app = createDiv(domSettings.domApp.id, domSettings.domApp.className);
+  app.appendChild(question(quizInfo, domSettings));
+  app.appendChild(choices(quizInfo, domSettings));
 
   root.appendChild(app);
 }

@@ -1,13 +1,13 @@
 import {quizInfo} from './testQuizInfoJson';
-import {domApp} from '../src/domSettings';
+import {domSettings} from '../src/domSettings';
 import {embed} from '../src/app';
 
 describe('app', () => {
   test('引数なし', () => {
     document.body.innerHTML = '<div id="quizembed"><div>';
 
-    embed();
-    const app = document.getElementById(domApp.id);
+    embed(quizInfo);
+    const app = document.getElementById(domSettings.domApp.id);
     expect(app).toBeTruthy();
   });
 
@@ -15,7 +15,7 @@ describe('app', () => {
     document.body.innerHTML = '<div id="quizembed"><div>';
 
     embed(quizInfo);
-    const app = document.getElementById(domApp.id);
+    const app = document.getElementById(domSettings.domApp.id);
     expect(app).toBeTruthy();
   });
 });

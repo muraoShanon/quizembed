@@ -1,19 +1,24 @@
-import {domApp, domAnswer, domChoice} from './domSettings';
 import {createDiv} from './util';
 import {answer} from './answer';
-import {QuizInfo} from './quizinfo.type';
+import {QuizInfo, DomSettings} from './types';
 
-function selectChoice(choiceDom: HTMLElement, quizInfo: QuizInfo) {
-  if (document.getElementById(domAnswer.answerContainer.id)) return;
+function selectChoice(
+  choiceDom: HTMLElement,
+  quizInfo: QuizInfo,
+  domSettings: DomSettings
+) {
+  if (document.getElementById(domSettings.domAnswer.answerContainer.id)) return;
 
   const isCorrect = choiceDom.dataset.no
     ? check(choiceDom.dataset.no, quizInfo)
     : false;
 
-  selectAction(choiceDom, isCorrect);
-  selectAfterAction(isCorrect, quizInfo);
+  selectAction(choiceDom, isCorrect, domSettings);
+  selectAfterAction(isCorrect, quizInfo, domSettings);
 
-  document.getElementById(domApp.id)?.appendChild(answer(isCorrect, quizInfo));
+  document
+    .getElementById(domSettings.domApp.id)
+    ?.appendChild(answer(isCorrect, quizInfo));
 }
 
 function markSpan(idstring: string): HTMLElement {
@@ -35,64 +40,86 @@ function insertSpan(
   selectedChoice.classList.add(addClassName);
 }
 
-function correctChoice(selectedChoice: HTMLElement): void {
-  insertSpan(selectedChoice, domChoice.maru.id, domChoice.correct.className);
+function correctChoice(
+  selectedChoice: HTMLElement,
+  domSettings: DomSettings
+): void {
+  insertSpan(
+    selectedChoice,
+    domSettings.domChoice.maru.id,
+    domSettings.domChoice.correct.className
+  );
 }
 
-function wrongChoice(selectedChoice: HTMLElement): void {
-  insertSpan(selectedChoice, domChoice.batu.id, domChoice.wrong.className);
+function wrongChoice(
+  selectedChoice: HTMLElement,
+  domSettings: DomSettings
+): void {
+  insertSpan(
+    selectedChoice,
+    domSettings.domChoice.batu.id,
+    domSettings.domChoice.wrong.className
+  );
 }
 
 export function check(selectNo: string, quizInfo: QuizInfo): boolean {
   return selectNo === quizInfo.answer.correct.no;
 }
 
-export function selectAction(selectedChoice: HTMLElement, result: boolean) {
+export function selectAction(
+  selectedChoice: HTMLElement,
+  result: boolean,
+  domSettings: DomSettings
+) {
   if (result) {
-    correctChoice(selectedChoice);
+    correctChoice(selectedChoice, domSettings);
   } else {
-    wrongChoice(selectedChoice);
+    wrongChoice(selectedChoice, domSettings);
   }
 }
 
 export function selectAfterAction(
   selectedRsult: boolean,
-  quizInfo: QuizInfo
+  quizInfo: QuizInfo,
+  domSettings: DomSettings
 ): void {
   const choices = document.getElementsByClassName(
-    domChoice.choices.className
+    domSettings.domChoice.choices.className
   ) as HTMLCollectionOf<HTMLElement>;
 
   Array.from(choices).forEach(choice => {
-    choice.classList.add(domChoice.after.className);
-    choice.classList.remove(domChoice.before.className);
+    choice.classList.add(domSettings.domChoice.after.className);
+    choice.classList.remove(domSettings.domChoice.before.className);
 
     if (!selectedRsult && choice.dataset.no === quizInfo.answer.correct.no) {
-      correctChoice(choice);
+      correctChoice(choice, domSettings);
     }
   });
 }
 
-export function choices(quizInfo: QuizInfo): HTMLElement {
+export function choices(
+  quizInfo: QuizInfo,
+  domSettings: DomSettings
+): HTMLElement {
   const container = createDiv(
-    domChoice.choicesContainer.id,
-    domChoice.choicesContainer.className
+    domSettings.domChoice.choicesContainer.id,
+    domSettings.domChoice.choicesContainer.className
   );
 
   quizInfo.choices.forEach(choice => {
     const cdom = createDiv(
-      domChoice.choices.id + choice.no,
-      `${domChoice.choices.className} ${domChoice.before.className}`
+      domSettings.domChoice.choices.id + choice.no,
+      `${domSettings.domChoice.choices.className} ${domSettings.domChoice.before.className}`
     );
     cdom.dataset.no = choice.no;
 
     const ctext = document.createElement('span');
-    ctext.className = domChoice.text.className;
+    ctext.className = domSettings.domChoice.text.className;
     ctext.textContent = choice.text;
     cdom.appendChild(ctext);
 
     cdom.onclick = function () {
-      selectChoice(cdom, quizInfo);
+      selectChoice(cdom, quizInfo, domSettings);
     };
     container.appendChild(cdom);
   });
