@@ -1,51 +1,54 @@
-import {domAnswer} from './domSettings';
 import {createDiv} from './util';
-import {QuizInfo} from './quizinfo.type';
+import {QuizInfo, DomSettings} from './types';
 
-function resultDiv(resultText: string): HTMLElement {
+function resultDiv(resultText: string, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domAnswer.resultMsg.id,
-    domAnswer.resultMsg.className,
+    domSettings.domAnswer.resultMsg.id,
+    domSettings.domAnswer.resultMsg.className,
     resultText
   );
 }
 
-function anwerTitle(quizInfo: QuizInfo): HTMLElement {
+function anwerTitle(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domAnswer.title.id,
-    domAnswer.title.className,
+    domSettings.domAnswer.title.id,
+    domSettings.domAnswer.title.className,
     quizInfo.answer.title
   );
 }
 
-function comment(quizInfo: QuizInfo): HTMLElement {
+function comment(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domAnswer.comment.id,
-    domAnswer.comment.className,
+    domSettings.domAnswer.comment.id,
+    domSettings.domAnswer.comment.className,
     quizInfo.answer.comment
   );
 }
 
-export function answer(result: boolean, quizInfo: QuizInfo): HTMLElement {
+export function answer(
+  result: boolean,
+  quizInfo: QuizInfo,
+  domSettings: DomSettings
+): HTMLElement {
   const container = createDiv(
-    domAnswer.answerContainer.id,
-    domAnswer.answerContainer.className
+    domSettings.domAnswer.answerContainer.id,
+    domSettings.domAnswer.answerContainer.className
   );
 
   // 結果
   if (result) {
     // 正解
-    container.appendChild(resultDiv(quizInfo.answer.correct.msg));
+    container.appendChild(resultDiv(quizInfo.answer.correct.msg, domSettings));
   } else {
     //間違い
-    container.appendChild(resultDiv(quizInfo.answer.wrong.msg));
+    container.appendChild(resultDiv(quizInfo.answer.wrong.msg, domSettings));
   }
 
   // 正解の表示
-  container.appendChild(anwerTitle(quizInfo));
+  container.appendChild(anwerTitle(quizInfo, domSettings));
 
   //解説
-  container.appendChild(comment(quizInfo));
+  container.appendChild(comment(quizInfo, domSettings));
 
   return container;
 }

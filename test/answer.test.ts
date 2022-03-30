@@ -1,5 +1,5 @@
 import {quizInfo} from './testQuizInfoJson';
-import {domAnswer} from '../src/domSettings';
+import {domSettings} from '../src/domSettings';
 import {answer} from '../src/answer';
 
 describe('Answer', () => {
@@ -7,7 +7,9 @@ describe('Answer', () => {
     beforeAll(() => {
       const targetId = 'answer-target';
       document.body.innerHTML = `<div id=${targetId}></div>`;
-      document.getElementById(targetId)?.appendChild(answer(true, quizInfo));
+      document
+        .getElementById(targetId)
+        ?.appendChild(answer(true, quizInfo, domSettings));
     });
 
     afterAll(() => {
@@ -16,7 +18,7 @@ describe('Answer', () => {
 
     test('結果のテキスト', () => {
       const resultText = document.getElementById(
-        domAnswer.resultMsg.id
+        domSettings.domAnswer.resultMsg.id
       )?.textContent;
 
       expect(resultText).toBe(quizInfo.answer.correct.msg);
@@ -24,7 +26,7 @@ describe('Answer', () => {
 
     test('正解タイトル', () => {
       const answerText = document.getElementById(
-        domAnswer.title.id
+        domSettings.domAnswer.title.id
       )?.textContent;
 
       expect(answerText).toBe(quizInfo.answer.title);
@@ -32,7 +34,7 @@ describe('Answer', () => {
 
     test('正解コメント', () => {
       const commentText = document.getElementById(
-        domAnswer.comment.id
+        domSettings.domAnswer.comment.id
       )?.textContent;
 
       expect(commentText).toBe(quizInfo.answer.comment);
@@ -43,7 +45,9 @@ describe('Answer', () => {
     beforeAll(() => {
       const targetId = 'answer-target';
       document.body.innerHTML = `<div id=${targetId}></div>`;
-      document.getElementById(targetId)?.appendChild(answer(false, quizInfo));
+      document
+        .getElementById(targetId)
+        ?.appendChild(answer(false, quizInfo, domSettings));
     });
 
     afterAll(() => {
@@ -52,7 +56,7 @@ describe('Answer', () => {
 
     test('結果のテキスト', () => {
       const resultText = document.getElementById(
-        domAnswer.resultMsg.id
+        domSettings.domAnswer.resultMsg.id
       )?.textContent;
 
       expect(resultText).toBe(quizInfo.answer.wrong.msg);
@@ -60,7 +64,7 @@ describe('Answer', () => {
 
     test('正解タイトル', () => {
       const answerText = document.getElementById(
-        domAnswer.title.id
+        domSettings.domAnswer.title.id
       )?.textContent;
 
       expect(answerText).toBe(quizInfo.answer.title);
@@ -68,7 +72,7 @@ describe('Answer', () => {
 
     test('正解コメント', () => {
       const commentText = document.getElementById(
-        domAnswer.comment.id
+        domSettings.domAnswer.comment.id
       )?.textContent;
 
       expect(commentText).toBe(quizInfo.answer.comment);

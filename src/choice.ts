@@ -18,7 +18,7 @@ function selectChoice(
 
   document
     .getElementById(domSettings.domApp.id)
-    ?.appendChild(answer(isCorrect, quizInfo));
+    ?.appendChild(answer(isCorrect, quizInfo, domSettings));
 }
 
 function markSpan(idstring: string): HTMLElement {
