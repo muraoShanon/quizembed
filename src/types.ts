@@ -1,4 +1,4 @@
-export interface DomSettings {
+export interface DomSettings extends Object {
   domApp: {
     id: string;
     className: string;
@@ -54,10 +54,12 @@ export interface DomSettings {
 
     maru: {
       id: string;
+      className: string;
     };
 
     batu: {
       id: string;
+      className: string;
     };
   };
   domAnswer: {
@@ -86,6 +88,7 @@ interface Choice {
 }
 
 export interface QuizInfo {
+  suffix?: string;
   question: {
     title: string;
     comment: string;

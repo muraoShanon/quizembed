@@ -27,7 +27,6 @@ export async function build(buildArg: BuildArg): Promise<boolean> {
     output: {
       path: output.path,
       filename: output.filename ? output.filename : 'quizembed.js',
-      library: `quizembed`,
     },
     plugins: [
       new DefinePlugin({

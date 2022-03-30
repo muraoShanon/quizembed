@@ -1,4 +1,5 @@
-const {build} = require('../lib/index');
+const {json} = require('stream/consumers');
+const {build} = require('../../lib/index');
 
 const quizInfo = {
   answer: {
@@ -12,7 +13,7 @@ const quizInfo = {
     title: 'クイズです',
     comment:
       'なんでしょうか？\nなんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？なんでしょうか？',
-    imagePath: './quizembed.exsample.png',
+    imagePath: '../quizembed.exsample.png',
   },
   choices: [
     {no: '1', text: '選択肢1です'},
@@ -27,6 +28,22 @@ async function main() {
       path: __dirname,
     },
     quizinfo: quizInfo,
+  });
+
+  const sufObj1 = JSON.parse(JSON.stringify(quizInfo));
+  sufObj1.question.title = 'クイズです1';
+  sufObj1.suffix = '_suffix1';
+  await build({
+    output: {path: __dirname, filename: 'quizembed_suffix1.js'},
+    quizinfo: sufObj1,
+  });
+
+  const sufObj2 = JSON.parse(JSON.stringify(quizInfo));
+  sufObj2.question.title = 'クイズです2';
+  sufObj2.suffix = '_suffix2';
+  await build({
+    output: {path: __dirname, filename: 'quizembed_suffix2.js'},
+    quizinfo: sufObj2,
   });
 }
 

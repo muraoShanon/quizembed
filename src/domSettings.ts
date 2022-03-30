@@ -16,11 +16,11 @@ const domQuestion = {
   },
   comment: {
     id: 'quizembed-question-comment',
-    className: 'quizembed-question-comments',
+    className: 'quizembed-question-comment',
   },
   image: {
     id: 'quizembed-question-image',
-    className: 'quizembed-question-images',
+    className: 'quizembed-question-image',
   },
 };
 
@@ -57,10 +57,12 @@ const domChoice = {
 
   maru: {
     id: 'quizembed-choices-maru',
+    className: 'quizembed-choices-maru',
   },
 
   batu: {
     id: 'quizembed-choices-batu',
+    className: 'quizembed-choices-batu',
   },
 };
 
