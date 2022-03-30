@@ -1,6 +1,6 @@
 import {resolve} from 'path';
 import webpack, {Configuration, DefinePlugin} from 'webpack';
-import {QuizInfo} from './quizinfo.type';
+import {QuizInfo} from './types';
 
 interface BuildArg {
   output: {path: string; filename?: string};

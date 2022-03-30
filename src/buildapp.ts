@@ -1,4 +1,4 @@
-import {QuizInfo} from './quizinfo.type';
+import {QuizInfo} from './types';
 import {embed as _embed} from './app';
 
 declare const QUIZINFO: QuizInfo;
