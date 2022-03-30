@@ -16,18 +16,18 @@ const domQuestion = {
   },
   comment: {
     id: 'quizembed-question-comment',
-    className: "'quizembed-question-comment'",
+    className: 'quizembed-question-comments',
   },
   image: {
     id: 'quizembed-question-image',
-    className: "'quizembed-question-image'",
+    className: 'quizembed-question-images',
   },
 };
 
 const domChoice = {
   choicesContainer: {
     id: 'quizembed-choices-choicecontainer',
-    className: "'quizembed-choices-choicecontainer'",
+    className: 'quizembed-choices-choicecontainer',
   },
 
   choices: {
