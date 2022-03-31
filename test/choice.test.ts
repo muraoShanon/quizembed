@@ -6,9 +6,10 @@ describe('choice', () => {
   beforeEach(() => {
     const targetDomId = 'choice-test';
     document.body.innerHTML = `<div id=${targetDomId}></div>`;
-    document
-      .getElementById(targetDomId)
-      ?.appendChild(choices(quizInfo, domSettings));
+
+    const root = document.getElementById(targetDomId)!;
+
+    root.appendChild(choices(quizInfo, domSettings, root));
   });
 
   afterEach(() => {
@@ -81,7 +82,10 @@ describe('choice', () => {
       domSettings.domChoice.choices.className
     ) as HTMLCollectionOf<HTMLElement>;
 
-    selectAfterAction(true, quizInfo, domSettings);
+    const targetDomId = 'choice-test';
+    const root = document.getElementById(targetDomId)!;
+
+    selectAfterAction(true, quizInfo, domSettings, root);
 
     Array.from(choices).forEach(choice => {
       expect(
@@ -94,7 +98,9 @@ describe('choice', () => {
   });
 
   test('選択後の処理:正解は常に表示される:selectAfterAction', () => {
-    selectAfterAction(false, quizInfo, domSettings);
+    const targetDomId = 'choice-test';
+    const root = document.getElementById(targetDomId)!;
+    selectAfterAction(false, quizInfo, domSettings, root);
     expect(document.getElementById(domSettings.domChoice.maru.id)).toBeTruthy();
   });
 });

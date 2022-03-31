@@ -5,19 +5,21 @@ import {QuizInfo, DomSettings} from './types';
 function selectChoice(
   choiceDom: HTMLElement,
   quizInfo: QuizInfo,
-  domSettings: DomSettings
+  domSettings: DomSettings,
+  root: HTMLElement
 ) {
-  if (document.getElementById(domSettings.domAnswer.answerContainer.id)) return;
+  if (root.querySelector(`#${domSettings.domAnswer.answerContainer.id}`))
+    return;
 
   const isCorrect = choiceDom.dataset.no
     ? check(choiceDom.dataset.no, quizInfo)
     : false;
 
   selectAction(choiceDom, isCorrect, domSettings);
-  selectAfterAction(isCorrect, quizInfo, domSettings);
+  selectAfterAction(isCorrect, quizInfo, domSettings, root);
 
-  document
-    .getElementById(domSettings.domApp.id)
+  root
+    .querySelector(`#${domSettings.domApp.id}`)
     ?.appendChild(answer(isCorrect, quizInfo, domSettings));
 }
 
@@ -81,9 +83,10 @@ export function selectAction(
 export function selectAfterAction(
   selectedRsult: boolean,
   quizInfo: QuizInfo,
-  domSettings: DomSettings
+  domSettings: DomSettings,
+  root: HTMLElement
 ): void {
-  const choices = document.getElementsByClassName(
+  const choices = root.getElementsByClassName(
     domSettings.domChoice.choices.className
   ) as HTMLCollectionOf<HTMLElement>;
 
@@ -99,7 +102,8 @@ export function selectAfterAction(
 
 export function choices(
   quizInfo: QuizInfo,
-  domSettings: DomSettings
+  domSettings: DomSettings,
+  root: HTMLElement
 ): HTMLElement {
   const container = createDiv(
     domSettings.domChoice.choicesContainer.id,
@@ -119,7 +123,7 @@ export function choices(
     cdom.appendChild(ctext);
 
     cdom.onclick = function () {
-      selectChoice(cdom, quizInfo, domSettings);
+      selectChoice(cdom, quizInfo, domSettings, root);
     };
     container.appendChild(cdom);
   });
