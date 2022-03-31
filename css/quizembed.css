@@ -48,6 +48,7 @@
     margin-bottom: 0.7rem;
     border-radius: 0.25rem;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    white-space: break-spaces;
   }
 .quizembed-app .before-quizembed-choices-choices:hover {
     cursor: pointer;
