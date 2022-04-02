@@ -1,6 +1,8 @@
+import {QuizInfo} from '../src/types';
 import {build} from '../lib/index';
 
-const quizInfo = {
+const quizInfo: QuizInfo = {
+  targetSelector: '#quizembed',
   answer: {
     correct: {no: '1', msg: '正解です'},
     wrong: {msg: '不正解です'},

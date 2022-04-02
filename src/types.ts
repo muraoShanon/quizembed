@@ -88,7 +88,7 @@ interface Choice {
 }
 
 export interface QuizInfo {
-  suffix?: string;
+  targetSelector: string;
   question: {
     title: string;
     comment: string;
