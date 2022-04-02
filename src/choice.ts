@@ -6,7 +6,7 @@ function selectChoice(
   choiceDom: HTMLElement,
   quizInfo: QuizInfo,
   domSettings: DomSettings,
-  root: HTMLElement
+  root: Element
 ) {
   if (root.querySelector(`#${domSettings.domAnswer.answerContainer.id}`))
     return;
@@ -84,7 +84,7 @@ export function selectAfterAction(
   selectedRsult: boolean,
   quizInfo: QuizInfo,
   domSettings: DomSettings,
-  root: HTMLElement
+  root: Element
 ): void {
   const choices = root.getElementsByClassName(
     domSettings.domChoice.choices.className
@@ -103,7 +103,7 @@ export function selectAfterAction(
 export function choices(
   quizInfo: QuizInfo,
   domSettings: DomSettings,
-  root: HTMLElement
+  root: Element
 ): HTMLElement {
   const container = createDiv(
     domSettings.domChoice.choicesContainer.id,

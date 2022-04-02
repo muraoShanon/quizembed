@@ -1,4 +1,7 @@
-export const quizInfo = {
+import {QuizInfo} from '../src/types';
+
+export const quizInfo: QuizInfo = {
+  targetSelector: '#quizembed',
   answer: {
     correct: {no: '1', msg: '正解です'},
     wrong: {msg: '不正解です'},

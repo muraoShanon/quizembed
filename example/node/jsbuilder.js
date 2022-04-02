@@ -1,7 +1,7 @@
-const {json} = require('stream/consumers');
 const {build} = require('../../lib/index');
 
 const quizInfo = {
+  targetSelector: '#quizembed',
   answer: {
     correct: {no: '1', msg: '正解です'},
     wrong: {msg: '不正解です'},
@@ -30,20 +30,20 @@ async function main() {
     quizinfo: quizInfo,
   });
 
-  const sufObj1 = JSON.parse(JSON.stringify(quizInfo));
-  sufObj1.question.title = 'クイズです1';
-  sufObj1.suffix = '_suffix1';
+  const obj1 = JSON.parse(JSON.stringify(quizInfo));
+  obj1.targetSelector = '#quizembed1';
+  obj1.question.title = 'クイズです1';
   await build({
     output: {path: __dirname, filename: 'quizembed_suffix1.js'},
-    quizinfo: sufObj1,
+    quizinfo: obj1,
   });
 
-  const sufObj2 = JSON.parse(JSON.stringify(quizInfo));
-  sufObj2.question.title = 'クイズです2';
-  sufObj2.suffix = '_suffix2';
+  const obj2 = JSON.parse(JSON.stringify(quizInfo));
+  obj2.targetSelector = '#quizembed2';
+  obj2.question.title = 'クイズです2';
   await build({
     output: {path: __dirname, filename: 'quizembed_suffix2.js'},
-    quizinfo: sufObj2,
+    quizinfo: obj2,
   });
 }
 
