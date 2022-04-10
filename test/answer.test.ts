@@ -1,81 +1,73 @@
 import {quizInfo} from './testQuizInfoJson';
 import {domSettings} from '../src/domSettings';
 import {answer} from '../src/answer';
+import {QuizInfo} from '../src/types';
 
 describe('Answer', () => {
-  describe('正解', () => {
-    const targetId = 'answer-target';
-    beforeAll(() => {
-      document.body.innerHTML = `<div id=${targetId}></div>`;
-      document
-        .getElementById(targetId)
-        ?.appendChild(answer(true, quizInfo, domSettings));
-    });
-
-    afterAll(() => {
-      document.body.innerHTML = '';
-    });
-
-    test('結果のテキスト', () => {
-      const resultText = document.querySelector(
-        `.${domSettings.domAnswer.resultMsg.className}`
-      )?.textContent;
-
-      expect(resultText).toBe(quizInfo.answer.correct.msg);
-    });
-
-    test('正解タイトル', () => {
-      const answerText = document.querySelector(
-        `.${domSettings.domAnswer.title.className}`
-      )?.textContent;
-
-      expect(answerText).toBe(quizInfo.answer.title);
-    });
-
-    test('正解コメント', () => {
-      const commentText = document.querySelector(
-        `.${domSettings.domAnswer.comment.className}`
-      )?.textContent;
-
-      expect(commentText).toBe(quizInfo.answer.comment);
-    });
+  const targetId = 'answer-target';
+  beforeAll(() => {
+    document.body.innerHTML = `<div id=${targetId}></div>`;
+    document
+      .getElementById(targetId)
+      ?.appendChild(answer(true, quizInfo, domSettings));
   });
 
-  describe('不正解', () => {
-    beforeAll(() => {
-      const targetId = 'answer-target';
-      document.body.innerHTML = `<div id=${targetId}></div>`;
-      document
-        .getElementById(targetId)
-        ?.appendChild(answer(false, quizInfo, domSettings));
-    });
+  afterAll(() => {
+    document.body.innerHTML = '';
+  });
 
-    afterAll(() => {
-      document.body.innerHTML = '';
-    });
+  test('結果のテキスト：正解', () => {
+    const correctMsg = document.querySelector(
+      `.${domSettings.domAnswer.resultMsg.className}`
+    )?.textContent;
 
-    test('結果のテキスト', () => {
-      const resultText = document.querySelector(
-        `.${domSettings.domAnswer.resultMsg.className}`
-      )?.textContent;
+    expect(correctMsg).toBe(quizInfo.answer.correct.msg);
+  });
 
-      expect(resultText).toBe(quizInfo.answer.wrong.msg);
-    });
+  test('結果のテキスト：不正解', () => {
+    document.body.innerHTML = '';
+    document.body.innerHTML = `<div id=${targetId}></div>`;
+    document
+      .getElementById(targetId)
+      ?.appendChild(answer(false, quizInfo, domSettings));
 
-    test('正解タイトル', () => {
-      const answerText = document.querySelector(
-        `.${domSettings.domAnswer.title.className}`
-      )?.textContent;
+    const wrongMsg = document.querySelector(
+      `.${domSettings.domAnswer.resultMsg.className}`
+    )?.textContent;
 
-      expect(answerText).toBe(quizInfo.answer.title);
-    });
+    expect(wrongMsg).toBe(quizInfo.answer.wrong.msg);
+  });
 
-    test('正解コメント', () => {
-      const commentText = document.querySelector(
-        `.${domSettings.domAnswer.comment.className}`
-      )?.textContent;
+  test('タイトル', () => {
+    const title = document.querySelector(
+      `.${domSettings.domAnswer.title.className}`
+    )?.textContent;
 
-      expect(commentText).toBe(quizInfo.answer.comment);
-    });
+    expect(title).toBe(quizInfo.answer.title);
+  });
+
+  test('コメント', () => {
+    const comment = document.querySelector(
+      `.${domSettings.domAnswer.comment.className}`
+    )?.textContent;
+
+    expect(comment).toBe(quizInfo.answer.comment);
+  });
+
+  test('画像?', () => {
+    const _quizInfo: QuizInfo = JSON.parse(JSON.stringify(quizInfo));
+    _quizInfo.answer.imagePath = './null.png';
+
+    document.body.innerHTML = '';
+    document.body.innerHTML = `<div id=${targetId}></div>`;
+    document
+      .getElementById(targetId)
+      ?.appendChild(answer(true, _quizInfo, domSettings));
+
+    const image = document.querySelector(
+      `.${domSettings.domAnswer.image.className}`
+    );
+
+    expect(image).toBeTruthy();
   });
 });

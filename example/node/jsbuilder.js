@@ -33,6 +33,7 @@ async function main() {
   const obj1 = JSON.parse(JSON.stringify(quizInfo));
   obj1.targetSelector = '#quizembed1';
   obj1.question.title = 'クイズです1';
+  obj1.answer.imagePath = '../under.png';
   await build({
     output: {path: __dirname, filename: 'quizembed_suffix1.js'},
     quizinfo: obj1,
