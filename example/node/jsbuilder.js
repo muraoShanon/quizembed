@@ -41,6 +41,8 @@ async function main() {
   const obj2 = JSON.parse(JSON.stringify(quizInfo));
   obj2.targetSelector = '#quizembed2';
   obj2.question.title = 'クイズです2';
+  obj2.answer.correct.no = ['1', '3'];
+  obj2.answer.title = '正解は1番と3番です';
   await build({
     output: {path: __dirname, filename: 'quizembed_suffix2.js'},
     quizinfo: obj2,

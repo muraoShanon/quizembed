@@ -84,7 +84,7 @@ export interface QuizInfo {
   choices: Choice[];
   answer: {
     correct: {
-      no: string;
+      no: string | string[];
       msg: string;
     };
     wrong: {
