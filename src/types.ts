@@ -66,6 +66,9 @@ export interface DomSettings extends Object {
     comment: {
       className: string;
     };
+    image: {
+      className: string;
+    };
   };
 }
 
@@ -92,5 +95,6 @@ export interface QuizInfo {
     };
     title: string;
     comment: string;
+    imagePath?: string;
   };
 }

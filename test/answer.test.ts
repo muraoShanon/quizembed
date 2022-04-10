@@ -1,6 +1,7 @@
 import {quizInfo} from './testQuizInfoJson';
 import {domSettings} from '../src/domSettings';
 import {answer} from '../src/answer';
+import {QuizInfo} from '../src/types';
 
 describe('Answer', () => {
   const targetId = 'answer-target';
@@ -16,11 +17,11 @@ describe('Answer', () => {
   });
 
   test('結果のテキスト：正解', () => {
-    const resultText = document.querySelector(
+    const correctMsg = document.querySelector(
       `.${domSettings.domAnswer.resultMsg.className}`
     )?.textContent;
 
-    expect(resultText).toBe(quizInfo.answer.correct.msg);
+    expect(correctMsg).toBe(quizInfo.answer.correct.msg);
   });
 
   test('結果のテキスト：不正解', () => {
@@ -30,26 +31,43 @@ describe('Answer', () => {
       .getElementById(targetId)
       ?.appendChild(answer(false, quizInfo, domSettings));
 
-    const resultText = document.querySelector(
+    const wrongMsg = document.querySelector(
       `.${domSettings.domAnswer.resultMsg.className}`
     )?.textContent;
 
-    expect(resultText).toBe(quizInfo.answer.wrong.msg);
+    expect(wrongMsg).toBe(quizInfo.answer.wrong.msg);
   });
 
   test('タイトル', () => {
-    const answerText = document.querySelector(
+    const title = document.querySelector(
       `.${domSettings.domAnswer.title.className}`
     )?.textContent;
 
-    expect(answerText).toBe(quizInfo.answer.title);
+    expect(title).toBe(quizInfo.answer.title);
   });
 
   test('コメント', () => {
-    const commentText = document.querySelector(
+    const comment = document.querySelector(
       `.${domSettings.domAnswer.comment.className}`
     )?.textContent;
 
-    expect(commentText).toBe(quizInfo.answer.comment);
+    expect(comment).toBe(quizInfo.answer.comment);
+  });
+
+  test('画像?', () => {
+    const _quizInfo: QuizInfo = JSON.parse(JSON.stringify(quizInfo));
+    _quizInfo.answer.imagePath = './null.png';
+
+    document.body.innerHTML = '';
+    document.body.innerHTML = `<div id=${targetId}></div>`;
+    document
+      .getElementById(targetId)
+      ?.appendChild(answer(true, _quizInfo, domSettings));
+
+    const image = document.querySelector(
+      `.${domSettings.domAnswer.image.className}`
+    );
+
+    expect(image).toBeTruthy();
   });
 });
