@@ -1,34 +1,27 @@
 export interface DomSettings extends Object {
   domApp: {
-    id: string;
     className: string;
   };
   domQuestion: {
     questionContainer: {
-      id: string;
       className: string;
     };
     title: {
-      id: string;
       className: string;
     };
     comment: {
-      id: string;
       className: string;
     };
     image: {
-      id: string;
       className: string;
     };
   };
   domChoice: {
     choicesContainer: {
-      id: string;
       className: string;
     };
 
     choices: {
-      id: string;
       className: string;
     };
 
@@ -53,30 +46,24 @@ export interface DomSettings extends Object {
     };
 
     maru: {
-      id: string;
       className: string;
     };
 
     batu: {
-      id: string;
       className: string;
     };
   };
   domAnswer: {
     answerContainer: {
-      id: string;
       className: string;
     };
     resultMsg: {
-      id: string;
       className: string;
     };
     title: {
-      id: string;
       className: string;
     };
     comment: {
-      id: string;
       className: string;
     };
   };

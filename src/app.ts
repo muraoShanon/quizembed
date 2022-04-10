@@ -9,7 +9,7 @@ export function embed(quizInfo: QuizInfo) {
 
   if (!root) return;
 
-  const app = createDiv(domSettings.domApp.id, domSettings.domApp.className);
+  const app = createDiv(domSettings.domApp.className);
   app.appendChild(question(quizInfo, domSettings));
   app.appendChild(choices(quizInfo, domSettings, root));
 

@@ -2,16 +2,11 @@ import {createDiv} from './util';
 import {QuizInfo, DomSettings} from './types';
 
 function resultDiv(resultText: string, domSettings: DomSettings): HTMLElement {
-  return createDiv(
-    domSettings.domAnswer.resultMsg.id,
-    domSettings.domAnswer.resultMsg.className,
-    resultText
-  );
+  return createDiv(domSettings.domAnswer.resultMsg.className, resultText);
 }
 
 function anwerTitle(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domSettings.domAnswer.title.id,
     domSettings.domAnswer.title.className,
     quizInfo.answer.title
   );
@@ -19,7 +14,6 @@ function anwerTitle(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
 
 function comment(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   return createDiv(
-    domSettings.domAnswer.comment.id,
     domSettings.domAnswer.comment.className,
     quizInfo.answer.comment
   );
@@ -30,10 +24,7 @@ export function answer(
   quizInfo: QuizInfo,
   domSettings: DomSettings
 ): HTMLElement {
-  const container = createDiv(
-    domSettings.domAnswer.answerContainer.id,
-    domSettings.domAnswer.answerContainer.className
-  );
+  const container = createDiv(domSettings.domAnswer.answerContainer.className);
 
   // 結果
   if (result) {

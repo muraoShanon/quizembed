@@ -1,10 +1,9 @@
-export function createDiv(id: string, className: string, innerText?: string) {
+export function createDiv(className: string, textContent?: string) {
   const div = document.createElement('div');
-  div.id = id;
   div.className = className;
 
-  if (innerText) {
-    div.textContent = innerText;
+  if (textContent) {
+    div.textContent = textContent;
   }
 
   return div;

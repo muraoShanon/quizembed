@@ -8,8 +8,11 @@ function selectChoice(
   domSettings: DomSettings,
   root: Element
 ) {
-  if (root.querySelector(`#${domSettings.domAnswer.answerContainer.id}`))
+  if (
+    root.querySelector(`.${domSettings.domAnswer.answerContainer.className}`)
+  ) {
     return;
+  }
 
   const isCorrect = choiceDom.dataset.no
     ? check(choiceDom.dataset.no, quizInfo)
@@ -19,49 +22,22 @@ function selectChoice(
   selectAfterAction(isCorrect, quizInfo, domSettings, root);
 
   root
-    .querySelector(`#${domSettings.domApp.id}`)
+    .querySelector(`.${domSettings.domApp.className}`)
     ?.appendChild(answer(isCorrect, quizInfo, domSettings));
-}
-
-function markSpan(idstring: string): HTMLElement {
-  const span = document.createElement('span');
-  span.id = idstring;
-
-  return span;
-}
-
-function insertSpan(
-  selectedChoice: HTMLElement,
-  markIdString: string,
-  addClassName: string
-) {
-  selectedChoice.insertBefore(
-    markSpan(markIdString),
-    selectedChoice.firstElementChild
-  );
-  selectedChoice.classList.add(addClassName);
 }
 
 function correctChoice(
   selectedChoice: HTMLElement,
   domSettings: DomSettings
 ): void {
-  insertSpan(
-    selectedChoice,
-    domSettings.domChoice.maru.id,
-    domSettings.domChoice.correct.className
-  );
+  selectedChoice.classList.add(domSettings.domChoice.correct.className);
 }
 
 function wrongChoice(
   selectedChoice: HTMLElement,
   domSettings: DomSettings
 ): void {
-  insertSpan(
-    selectedChoice,
-    domSettings.domChoice.batu.id,
-    domSettings.domChoice.wrong.className
-  );
+  selectedChoice.classList.add(domSettings.domChoice.wrong.className);
 }
 
 export function check(selectNo: string, quizInfo: QuizInfo): boolean {
@@ -105,14 +81,10 @@ export function choices(
   domSettings: DomSettings,
   root: Element
 ): HTMLElement {
-  const container = createDiv(
-    domSettings.domChoice.choicesContainer.id,
-    domSettings.domChoice.choicesContainer.className
-  );
+  const container = createDiv(domSettings.domChoice.choicesContainer.className);
 
   quizInfo.choices.forEach(choice => {
     const cdom = createDiv(
-      domSettings.domChoice.choices.id + choice.no,
       `${domSettings.domChoice.choices.className} ${domSettings.domChoice.before.className}`
     );
     cdom.dataset.no = choice.no;

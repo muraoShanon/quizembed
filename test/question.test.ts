@@ -15,33 +15,45 @@ describe('Question', () => {
   });
 
   test('Dom生成確認', () => {
-    const questionContainer = document.getElementById(
-      domSettings.domQuestion.questionContainer.id
+    const questionContainer = document.querySelector(
+      `.${domSettings.domQuestion.questionContainer.className}`
     );
     expect(questionContainer).toBeTruthy();
 
-    const header = document.getElementById(domSettings.domQuestion.title.id);
+    const header = document.querySelector(
+      `.${domSettings.domQuestion.title.className}`
+    );
     expect(header).toBeTruthy();
 
-    const qtext = document.getElementById(domSettings.domQuestion.comment.id);
+    const qtext = document.querySelector(
+      `.${domSettings.domQuestion.comment.className}`
+    );
     expect(qtext).toBeTruthy();
 
-    const qimage = document.getElementById(domSettings.domQuestion.image.id);
+    const qimage = document.querySelector(
+      `.${domSettings.domQuestion.image.className}`
+    );
     expect(qimage).toBeTruthy();
   });
 
   test('ヘッダテキスト', () => {
-    const header = document.getElementById(domSettings.domQuestion.title.id);
+    const header = document.querySelector(
+      `.${domSettings.domQuestion.title.className}`
+    );
     expect(header?.textContent).toBe(quizInfo.question.title);
   });
 
   test('設問テキスト', () => {
-    const qtext = document.getElementById(domSettings.domQuestion.comment.id);
+    const qtext = document.querySelector(
+      `.${domSettings.domQuestion.comment.className}`
+    );
     expect(qtext?.textContent).toBe(quizInfo.question.comment);
   });
 
   test('画像', () => {
-    const qimage = document.getElementById(domSettings.domQuestion.image.id);
+    const qimage = document.querySelector(
+      `.${domSettings.domQuestion.image.className}`
+    );
     expect(qimage).toBeTruthy();
   });
 });

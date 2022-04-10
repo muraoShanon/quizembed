@@ -23,6 +23,7 @@ describe('buildテスト', () => {
         filename: filename,
       },
       quizinfo: {
+        targetSelector: '#quizembed',
         answer: {
           correct: {
             no: '1',

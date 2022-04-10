@@ -7,15 +7,7 @@ describe('app', () => {
     document.body.innerHTML = '<div id="quizembed"><div>';
 
     embed(quizInfo);
-    const app = document.getElementById(domSettings.domApp.id);
-    expect(app).toBeTruthy();
-  });
-
-  test('引数あり', () => {
-    document.body.innerHTML = '<div id="quizembed"><div>';
-
-    embed(quizInfo);
-    const app = document.getElementById(domSettings.domApp.id);
+    const app = document.querySelector(`.${domSettings.domApp.className}`);
     expect(app).toBeTruthy();
   });
 });

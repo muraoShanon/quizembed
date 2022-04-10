@@ -17,8 +17,8 @@ describe('choice', () => {
   });
 
   test('choice:ContaierDom生成', () => {
-    const choicesContaierDom = document.getElementById(
-      domSettings.domChoice.choicesContainer.id
+    const choicesContaierDom = document.querySelector(
+      `.${domSettings.domChoice.choicesContainer.className}`
     );
     expect(choicesContaierDom).toBeTruthy();
   });
@@ -28,17 +28,6 @@ describe('choice', () => {
       domSettings.domChoice.choices.className
     );
     expect(choicesDom.length).toBe(quizInfo.choices.length);
-  });
-
-  test('設問文', () => {
-    const idPrefix = domSettings.domChoice.choices.id;
-
-    quizInfo.choices.forEach(choice => {
-      const text = document.getElementById(
-        `${idPrefix}${choice.no}`
-      )?.textContent;
-      expect(text).toBe(choice.text);
-    });
   });
 
   test('答え合わせ', () => {
@@ -52,9 +41,6 @@ describe('choice', () => {
 
     selectAction(choices[0], true, domSettings);
 
-    // 丸オブジェクトの生成
-    expect(document.getElementById(domSettings.domChoice.maru.id)).toBeTruthy();
-
     // correctクラスの追加
     expect(choices[0].classList).toContain(
       domSettings.domChoice.correct.className
@@ -67,9 +53,6 @@ describe('choice', () => {
     ) as HTMLCollectionOf<HTMLElement>;
 
     selectAction(choices[0], false, domSettings);
-
-    // バツオブジェクトの生成
-    expect(document.getElementById(domSettings.domChoice.batu.id)).toBeTruthy();
 
     // wrongクラスの追加
     expect(choices[0].classList).toContain(
@@ -101,6 +84,8 @@ describe('choice', () => {
     const targetDomId = 'choice-test';
     const root = document.getElementById(targetDomId)!;
     selectAfterAction(false, quizInfo, domSettings, root);
-    expect(document.getElementById(domSettings.domChoice.maru.id)).toBeTruthy();
+    expect(
+      document.querySelector(`.${domSettings.domChoice.correct.className}`)
+    ).toBeTruthy();
   });
 });
