@@ -1,6 +1,7 @@
 import {quizInfo} from './testQuizInfoJson';
 import {domSettings} from '../src/domSettings';
 import {choices, check, selectAction, selectAfterAction} from '../src/choice';
+import {QuizInfo} from '../src/types';
 
 describe('choice', () => {
   beforeEach(() => {
@@ -30,8 +31,19 @@ describe('choice', () => {
     expect(choicesDom.length).toBe(quizInfo.choices.length);
   });
 
-  test('答え合わせ', () => {
-    expect(check(quizInfo.answer.correct.no, quizInfo)).toBeTruthy();
+  test('答え合わせ:正解が一つ', () => {
+    expect(check(quizInfo.answer.correct.no as string, quizInfo)).toBeTruthy();
+  });
+
+  test('答え合わせ：正解が複数', () => {
+    const _quizInfo: QuizInfo = JSON.parse(JSON.stringify(quizInfo));
+    const quizInfoMultiCorrect = Object.assign(_quizInfo, {
+      answer: {correct: {no: ['1', '3'], msg: '複数正解'}},
+    });
+
+    for (const correctNo of quizInfoMultiCorrect.answer.correct.no) {
+      expect(check(correctNo, quizInfoMultiCorrect)).toBeTruthy();
+    }
   });
 
   test('選択肢選択:正解:selectAction', () => {

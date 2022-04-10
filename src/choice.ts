@@ -41,7 +41,13 @@ function wrongChoice(
 }
 
 export function check(selectNo: string, quizInfo: QuizInfo): boolean {
-  return selectNo === quizInfo.answer.correct.no;
+  const correctNo = quizInfo.answer.correct.no;
+
+  if (!Array.isArray(correctNo)) {
+    return selectNo === quizInfo.answer.correct.no;
+  } else {
+    return correctNo.includes(selectNo);
+  }
 }
 
 export function selectAction(
