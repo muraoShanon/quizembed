@@ -113,4 +113,8 @@
   & .quizembed-answer-comment {
     white-space: break-spaces;
   }
+
+  & .quizembed-answer-image {
+    max-width: 100%;
+  }
 }

@@ -98,3 +98,10 @@
 .quizembed-app .quizembed-answer-comment {
     white-space: break-spaces;
   }
+.quizembed-app .quizembed-answer-image {
+    max-width: 100%;
+  }
+
+  .quizembed-app .quizembed-answer-image img {
+    max-width: 100%;
+  }

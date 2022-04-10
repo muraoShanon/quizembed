@@ -3,7 +3,7 @@ quizInfoJsons/
 lib/
 example/**/quizembed*.js
 example/**/tsquizembed*.js
-
+.vscode/
 
 # Logs
 logs

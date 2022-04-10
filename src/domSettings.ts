@@ -70,6 +70,9 @@ const domAnswer = {
   comment: {
     className: 'quizembed-answer-comment',
   },
+  image: {
+    className: 'quizembed-answer-image',
+  },
 };
 
 export const domSettings: DomSettings = {

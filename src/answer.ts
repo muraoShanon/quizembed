@@ -19,6 +19,22 @@ function comment(quizInfo: QuizInfo, domSettings: DomSettings): HTMLElement {
   );
 }
 
+function image(
+  quizInfo: QuizInfo,
+  domSettings: DomSettings
+): HTMLElement | undefined {
+  // console.log(quizInfo.answer);
+  if (!quizInfo.answer.imagePath) return undefined;
+
+  const imageContainer = createDiv(domSettings.domAnswer.image.className);
+  const img = document.createElement('img');
+  img.src = quizInfo.answer.imagePath;
+
+  imageContainer.appendChild(img);
+
+  return imageContainer;
+}
+
 export function answer(
   result: boolean,
   quizInfo: QuizInfo,
@@ -40,6 +56,12 @@ export function answer(
 
   //解説
   container.appendChild(comment(quizInfo, domSettings));
+
+  //画像?
+  const img = image(quizInfo, domSettings);
+  if (img) {
+    container.appendChild(img);
+  }
 
   return container;
 }
