@@ -1,6 +1,6 @@
 {
   "name": "quizembed",
-  "version": "2.6.2",
+  "version": "2.6.3",
   "description": "クイズ埋め込みJS",
   "engines": {
     "node": "16"
