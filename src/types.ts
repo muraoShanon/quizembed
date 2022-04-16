@@ -97,4 +97,5 @@ export interface QuizInfo {
     comment: string;
     imagePath?: string;
   };
+  callback?: (clickNo: string, isCorrect: boolean) => void;
 }
