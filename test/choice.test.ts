@@ -94,4 +94,21 @@ describe('choice', () => {
       document.querySelector(`.${domSettings.domChoice.correct.className}`)
     ).toBeTruthy();
   });
+
+  test('callback', () => {
+    root.innerHTML = '';
+
+    const _quizInfo: QuizInfo = JSON.parse(JSON.stringify(quizInfo));
+    _quizInfo.callback = (choiceNo, isCorrect) => {
+      expect(isCorrect).toBe(choiceNo === _quizInfo.answer.correct.no);
+    };
+
+    root.appendChild(choices(_quizInfo, domSettings, root));
+
+    const _choices = document.getElementsByClassName(
+      domSettings.domChoice.choices.className
+    ) as HTMLCollectionOf<HTMLElement>;
+
+    _choices[2].click();
+  });
 });

@@ -9,7 +9,8 @@ function selectChoice(
   root: Element
 ) {
   if (
-    root.querySelector(`.${domSettings.domAnswer.answerContainer.className}`)
+    root.querySelector(`.${domSettings.domAnswer.answerContainer.className}`) ||
+    !choiceDom.dataset.no
   ) {
     return;
   }
@@ -24,6 +25,11 @@ function selectChoice(
   root
     .querySelector(`.${domSettings.domApp.className}`)
     ?.appendChild(answer(isCorrect, quizInfo, domSettings));
+
+  //callback
+  if (quizInfo.callback) {
+    quizInfo.callback(choiceDom.dataset.no, isCorrect);
+  }
 }
 
 function correctChoice(
