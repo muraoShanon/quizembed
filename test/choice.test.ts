@@ -4,12 +4,11 @@ import {choices, check, selectAction, selectAfterAction} from '../src/choice';
 import {QuizInfo} from '../src/types';
 
 describe('choice', () => {
+  let root: Element;
   beforeEach(() => {
     const targetDomId = 'choice-test';
     document.body.innerHTML = `<div id=${targetDomId}></div>`;
-
-    const root = document.getElementById(targetDomId)!;
-
+    root = document.getElementById(targetDomId)!;
     root.appendChild(choices(quizInfo, domSettings, root));
   });
 
@@ -77,9 +76,6 @@ describe('choice', () => {
       domSettings.domChoice.choices.className
     ) as HTMLCollectionOf<HTMLElement>;
 
-    const targetDomId = 'choice-test';
-    const root = document.getElementById(targetDomId)!;
-
     selectAfterAction(true, quizInfo, domSettings, root);
 
     Array.from(choices).forEach(choice => {
@@ -93,8 +89,6 @@ describe('choice', () => {
   });
 
   test('選択後の処理:正解は常に表示される:selectAfterAction', () => {
-    const targetDomId = 'choice-test';
-    const root = document.getElementById(targetDomId)!;
     selectAfterAction(false, quizInfo, domSettings, root);
     expect(
       document.querySelector(`.${domSettings.domChoice.correct.className}`)
