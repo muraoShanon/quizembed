@@ -2,6 +2,7 @@ import {quizInfo} from './testQuizInfoJson';
 import {domSettings} from '../src/domSettings';
 import {choices, check, selectAction, selectAfterAction} from '../src/choice';
 import {QuizInfo} from '../src/types';
+import {createDiv} from '../src/util';
 
 describe('choice', () => {
   let root: Element;
@@ -9,7 +10,11 @@ describe('choice', () => {
     const targetDomId = 'choice-test';
     document.body.innerHTML = `<div id=${targetDomId}></div>`;
     root = document.getElementById(targetDomId)!;
-    root.appendChild(choices(quizInfo, domSettings, root));
+
+    const app = createDiv(domSettings.domApp.className);
+    app.appendChild(choices(quizInfo, domSettings, app));
+
+    root.appendChild(app);
   });
 
   afterEach(() => {
@@ -28,6 +33,22 @@ describe('choice', () => {
       domSettings.domChoice.choices.className
     );
     expect(choicesDom.length).toBe(quizInfo.choices.length);
+  });
+
+  test('clickするとanswerエリアが作られる', () => {
+    const choices = document.getElementsByClassName(
+      domSettings.domChoice.choices.className
+    ) as HTMLCollectionOf<HTMLElement>;
+
+    const app = document.getElementsByClassName(domSettings.domApp.className);
+
+    choices[2].click();
+
+    const answerContainer = document.getElementsByClassName(
+      domSettings.domAnswer.answerContainer.className
+    );
+
+    expect(answerContainer.length).toBeTruthy();
   });
 
   test('答え合わせ:正解が一つ', () => {
