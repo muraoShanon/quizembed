@@ -6,10 +6,12 @@ function selectChoice(
   choiceDom: HTMLElement,
   quizInfo: QuizInfo,
   domSettings: DomSettings,
-  root: Element
+  appRootDom: Element
 ) {
   if (
-    root.querySelector(`.${domSettings.domAnswer.answerContainer.className}`) ||
+    appRootDom.querySelector(
+      `.${domSettings.domAnswer.answerContainer.className}`
+    ) ||
     !choiceDom.dataset.no
   ) {
     return;
@@ -20,11 +22,9 @@ function selectChoice(
     : false;
 
   selectAction(choiceDom, isCorrect, domSettings);
-  selectAfterAction(isCorrect, quizInfo, domSettings, root);
+  selectAfterAction(isCorrect, quizInfo, domSettings, appRootDom);
 
-  root
-    .querySelector(`.${domSettings.domApp.className}`)
-    ?.appendChild(answer(isCorrect, quizInfo, domSettings));
+  appRootDom.appendChild(answer(isCorrect, quizInfo, domSettings));
 
   //callback
   if (quizInfo.callback) {
@@ -72,9 +72,9 @@ export function selectAfterAction(
   selectedRsult: boolean,
   quizInfo: QuizInfo,
   domSettings: DomSettings,
-  root: Element
+  appRootDom: Element
 ): void {
-  const choices = root.getElementsByClassName(
+  const choices = appRootDom.getElementsByClassName(
     domSettings.domChoice.choices.className
   ) as HTMLCollectionOf<HTMLElement>;
 
