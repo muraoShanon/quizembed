@@ -11,7 +11,7 @@ export function embed(quizInfo: QuizInfo) {
 
   const app = createDiv(domSettings.domApp.className);
   app.appendChild(question(quizInfo, domSettings));
-  app.appendChild(choices(quizInfo, domSettings, root));
+  app.appendChild(choices(quizInfo, domSettings, app));
 
   root.appendChild(app);
 }
